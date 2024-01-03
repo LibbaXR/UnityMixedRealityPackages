@@ -1,0 +1,27 @@
+﻿<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" ml="UnityEditor.XR.MagicLeap" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/SettingsProviders/_Common/SettingsProviderStyle.uss?fileID=7433441132597879392&amp;guid=70ea2c8e7cf598d49adcac896a812c46&amp;type=3#SettingsProviderStyle" />
+    <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1">
+        <ui:VisualElement style="flex-direction: row; justify-content: space-between;">
+            <ui:Label text="Environment" class="settings-label" />
+            <ui:Button text="Reset to Defaults" display-tooltip-when-elided="true" name="reset-settings-button" enable-rich-text="false" class="reset-button" style="position: relative; top: auto; left: auto; margin-top: 3px; margin-bottom: 3px; margin-left: 0; margin-right: 0;" />
+        </ui:VisualElement>
+        <ui:Label text="Logging" class="settings-label" style="margin-top: 0;" />
+        <uie:EnumField label="Log Level" value="Center" name="log-level" class="extended-width" />
+        <ui:Toggle label="Show Crash Messages" name="show-crash-toggle" style="display: none;" />
+        <ui:Toggle label="Show User Crash Messages" name="show-user-crash-toggle" style="display: none;" />
+        <ui:Label text="Graphics" class="settings-label" style="margin-top: 30px;" />
+        <ui:Toggle label="Hardware Acceleration" name="acceleration-toggle" class="extended-width" />
+        <ui:Label text="Simulator" class="settings-label" style="margin-top: 30px;" />
+        <ui:VisualElement name="room-picker" style="flex-direction: row;">
+            <ui:TextField picking-mode="Ignore" label="Default Session" readonly="true" focusable="false" name="room-path" class="extended-width" style="flex-grow: 1; flex-shrink: 1;" />
+            <ui:Button text="..." name="open-file-button" style="flex-grow: 1; max-width: 21px; flex-shrink: 0;" />
+        </ui:VisualElement>
+        <ui:IMGUIContainer name="help-box" class="unity-base-field__input" style="padding-left: 3px; padding-right: 3px; padding-top: 1px; padding-bottom: 1px; margin-left: 90px;" />
+        <uie:EnumField label="Keyboard/Mouse Update Rate" value="120 Hz" name="update-rate" style="display: none;" />
+        <ui:Label text="Prompts" class="settings-label" style="margin-top: 30px;" />
+        <uie:EnumField label="Save Dirty Session" value="Prompt" name="dirty-session-field" class="extended-width" />
+        <ui:Label text="Editor" class="settings-label" style="margin-top: 30px;" />
+        <ui:Toggle label="Show close session dialog" name="close-dialog-toggle" class="extended-width" />
+        <ui:Toggle label="Close ZI session on quit?" name="close-session-on-quit-toggle" class="extended-width" />
+    </ui:ScrollView>
+</ui:UXML>

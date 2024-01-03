@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" ml="UnityEditor.XR.MagicLeap" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); margin-left: 8px; margin-right: 8px; margin-top: 8px; margin-bottom: 8px;">
+        <ui:TextField picking-mode="Ignore" name="profileName-input" style="min-width: auto; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0;" />
+        <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; justify-content: center;">
+            <ui:Button tabindex="-1" text="Cancel" display-tooltip-when-elided="true" name="cancel-button" style="min-width: auto; width: 81px; height: 20px; border-top-left-radius: 12px; border-bottom-left-radius: 12px; border-top-right-radius: 12px; border-bottom-right-radius: 12px;" />
+            <ui:Button tabindex="-1" text="Save" display-tooltip-when-elided="true" name="yes-button" style="width: 81px; height: 20px; border-top-left-radius: 12px; border-bottom-left-radius: 12px; border-top-right-radius: 12px; border-bottom-right-radius: 12px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

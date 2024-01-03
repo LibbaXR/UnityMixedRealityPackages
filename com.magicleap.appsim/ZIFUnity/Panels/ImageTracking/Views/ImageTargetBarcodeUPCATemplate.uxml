@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/ImageTracking/Views/ImageTargetTemplateStyle.uss?fileID=7433441132597879392&amp;guid=4f01a9f45843f7741b316656ca57d886&amp;type=3#ImageTargetTemplateStyle" />
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/_Common/ZIGeneralStyleSheet.uss?fileID=7433441132597879392&amp;guid=1034af72768fe36458d869f9b10e5e52&amp;type=3#ZIGeneralStyleSheet" />
+    <ui:VisualElement name="ImageSubview" class="unity-foldout unity-foldout--depth-0" style="justify-content: flex-start; height: auto; flex-direction: column; margin-top: 10px; margin-bottom: 0;">
+        <ui:TextField picking-mode="Ignore" label="UPC-A-Text" name="TextField" />
+        <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="TextValidationMessage" style="color: rgb(255, 0, 0); -unity-text-align: upper-left; padding-left: 140px;" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,32 @@
+<!-- %BANNER_BEGIN%
+// %COPYRIGHT_BEGIN%
+//
+// Copyright (c) (2021-2023) Magic Leap, Inc. All Rights Reserved.
+// Use of this file is governed by the Software License Agreement, located here: https://www.magicleap.com/software-license-agreement-ml2
+// Terms and conditions applicable to third-party materials accompanying this distribution may also be found in the top-level NOTICE file appearing herein.
+// %COPYRIGHT_END%
+//
+// %COPYRIGHT_END%
+// %BANNER_END%-->
+
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" ml="UnityEditor.XR.MagicLeap" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/Target/Views/ZITargetStyle.uss?fileID=7433441132597879392&amp;guid=72928b74355c4c64fa90066472a41ffa&amp;type=3#ZITargetStyle" />
+    <ui:Label name="ErrorLabel" tooltip="Unsaved Session" class="currentSessionLabel" style="flex-wrap: wrap; flex-grow: 1; white-space: normal; max-height: 200px; width: 100%; max-width: 100%; background-color: rgba(60, 60, 60, 0); -unity-text-align: middle-center; display: none;" />
+    <uie:Toolbar name="TargetToolbar">
+        <ui:VisualElement name="LeftLayout" style="flex-direction: row;">
+            <uie:EnumField label="Target:" value="0" name="TargetDropdown" focusable="false" tooltip="Target" class="dropdown" />
+            <ui:Button name="TargetConnect-button" class="targetStartStopButton">
+                <ui:VisualElement name="StartStopIcon" class="targetButtonIconLayout startTargetIcon" style="flex-grow: 0;" />
+            </ui:Button>
+        </ui:VisualElement>
+        <ui:Button name="PrimaryNavTargetSelector" class="navTargSelectorBtn" style="width: 24px; height: 128%; flex-direction: row-reverse; border-top-width: 0;">
+            <ui:IMGUIContainer name="CurrentIcon" tooltip="Current active target for peripheral input." class="targetModeButtonIconLayout cameraModeIcon targetMode-SceneView" style="height: 24px; width: 24px;" />
+        </ui:Button>
+    </uie:Toolbar>
+    <uie:Toolbar name="SessionToolbar" style="max-width: 100%;">
+        <ui:Label name="CurrentSessionLabel" tooltip="Unsaved Session" class="currentSessionLabel" />
+        <ui:Button name="SessionDropDownButton" class="sessionDropdownButton">
+            <ui:VisualElement name="DropdownIcon" style="background-image: url(&apos;project://database/Packages/com.magicleap.appsim/Icons/Arrow_Dropdown.png?fileID=2800000&amp;guid=791036339822e1f4f8038544f62bf310&amp;type=3#Arrow_Dropdown&apos;); width: 100%; height: 20px; -unity-background-scale-mode: scale-to-fit; max-width: none;" />
+        </ui:Button>
+    </uie:Toolbar>
+</ui:UXML>

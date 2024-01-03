@@ -1,0 +1,67 @@
+﻿<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" ml="UnityEditor.XR.MagicLeap" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/Controller/Views/ZIControllerStyle.uss?fileID=7433441132597879392&amp;guid=96c4d22397b34794896ba46915a56439&amp;type=3#ZIControllerStyle" />
+    <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1">
+        <ui:Foldout text="Transform" name="Foldout-Transform">
+            <ui:Template src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/_Common/ResetButton/ResetButton.uxml" name="ResetTransformTemplate"/>
+            <ui:Instance template="ResetTransformTemplate" name="ResetTransform"/>
+            <ui:VisualElement name="Layout-Transform" class="sectionLayout">
+                <ui:Toggle label="Follow Head Pose" name="FollowHeadPose" tooltip="Enables the control gizmo headpose follow mode" class="toggle" style="width: 118px; justify-content: flex-end;" />
+                <uie:EnumField label="Snap to Hand Pose" value="Center" name="SnapToHandPose" tooltip="Enables the control gizmo snap to handpose mode" class="dropdown" />
+                <uie:Vector3Field label="Position" name="TransformPosition" class="vector3" />
+                <uie:Vector3Field label="Orientation" name="TransformOrientation" class="vector3" />
+            </ui:VisualElement>
+        </ui:Foldout>
+        <ui:Foldout text="Touchpad" name="Foldout-Touchpad">
+            <ui:VisualElement name="Layout" class="sectionLayout">
+                <ui:Toggle label="Hold" name="HoldToggle" class="toggle" style="width: 45px; justify-content: flex-end;" />
+                <ui:VisualElement name="TouchpadContainer" class="stretchRow touchpadStretchLayout touchpadCenterLayout">
+                    <ui:IMGUIContainer name="TouchpadGUI" class="touchpadGUI-maintain-ratio" />
+                </ui:VisualElement>
+                <ui:VisualElement name="SliderLayout" style="flex-direction: row; justify-content: space-between; width: 100%; align-items: center;">
+                    <ui:Slider picking-mode="Ignore" label="Applied Force" value="0" high-value="1" name="AppliedForce" show-input-field="true" style="width: 50%; justify-content: space-between; -unity-text-align: upper-right;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:Foldout>
+        <ui:Foldout text="Actions" name="Foldout-Actions">
+            <ui:VisualElement name="ActionsLayout" class="sectionLayout">
+                <uie:Vector3Field label="Touch Position &amp; Force" name="TouchPosAndForceFields" class="vector3" />
+                <ui:Slider picking-mode="Ignore" label="Trigger" value="0" high-value="1" show-input-field="true" name="TriggerSlider" class="stretchRow" />
+                <ui:VisualElement name="ActionButtonRow" class="stretchRow" style="justify-content: flex-start; align-items: stretch;">
+                    <ui:VisualElement name="ActionButtonsLayout" style="flex-direction: row; flex-wrap: wrap; width: auto; max-width: 80%; flex-grow: 0; white-space: normal; min-width: 25%; -unity-background-scale-mode: scale-to-fit; align-items: center; justify-content: flex-start;">
+                        <ui:VisualElement name="TriggerButton" class="trigger-button" style="justify-content: center; align-items: center; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; flex-grow: 1; flex-shrink: 0; min-width: 32px; max-width: 85px;">
+                            <ui:Label text="Trigger" name="TriggerText" class="action-button-label" style="font-size: 10px; -unity-text-align: middle-center;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="BumperButton" class="trigger-button" style="justify-content: center; align-items: center; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; flex-grow: 1; flex-shrink: 0; max-width: 86px;">
+                            <ui:Label text="Bumper" name="BumperText" class="action-button-label" style="font-size: 10px; -unity-text-align: middle-center;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="MenuButton" class="trigger-button" style="justify-content: center; align-items: center; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; flex-shrink: 0; flex-grow: 1; max-width: 75px;">
+                            <ui:Label text="Menu" name="MenuText" class="action-button-label" style="font-size: 10px; -unity-text-align: middle-center;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="BackButton" class="trigger-button" style="justify-content: center; align-items: center; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; flex-shrink: 0; flex-grow: 1; margin-top: 5px; margin-bottom: 5px; max-width: 72px; display: none; visibility: hidden;">
+                            <ui:Label text="Back" name="BackText" style="color: rgb(255, 255, 255); font-size: 10px; -unity-text-align: middle-center;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:Toggle label="Hold" name="ActionHoldToggle" class="toggle actionRowToggle" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:Foldout>
+        <ui:Foldout text="Touchpad Gestures" name="Foldout-Gestures" label="Applied Force">
+            <ui:VisualElement name="GesturesLayout" class="sectionLayout">
+                <uie:Vector3Field label="Position and Force" name="PositionAndForceFields" class="vector3" />
+                <uie:EnumField label="Gesture Type" name="GestureType" class="stretchRow" />
+                <uie:EnumField label="Gesture State" name="GestureState" class="stretchRow" />
+                <uie:EnumField label="Gesture Direction" name="GestureDirection" class="stretchRow" />
+                <uie:FloatField name="Speed" label="Speed" picking-mode="Ignore" class="stretchRow" />
+                <uie:FloatField label="Distance" picking-mode="Ignore" name="Distance" class="stretchRow" />
+                <ui:Slider picking-mode="Ignore" label="Radius" value="0" high-value="1" name="Radius" low-value="0" show-input-field="true" class="stretchRow" />
+                <uie:FloatField label="Angle" value="0" name="Angle" class="stretchRow" />
+            </ui:VisualElement>
+        </ui:Foldout>
+        <ui:VisualElement style="height: 34px;" />
+        <ui:VisualElement name="Status" class="sectionLayout">
+            <ui:Toggle label="Connected" name="Connected" class="toggle" style="justify-content: flex-end; width: 80px;" />
+            <uie:EnumField label="Control Type" value="Center" name="TypeSelector" class="stretchRow" />
+            <uie:EnumField label="Control DoF" value="Center" name="DoFSelector" class="stretchRow" style="display: none;" />
+        </ui:VisualElement>
+    </ui:ScrollView>
+</ui:UXML>

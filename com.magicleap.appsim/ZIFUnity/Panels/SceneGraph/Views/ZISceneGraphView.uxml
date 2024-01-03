@@ -1,0 +1,46 @@
+﻿<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" ml="UnityEditor.XR.MagicLeap" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/SceneGraph/Views/ZISceneGraphStyle.uss?fileID=7433441132597879392&amp;guid=b8560f395e87e054f98f0f575f10c788&amp;type=3#ZISceneGraphStyle" />
+    <ui:VisualElement name="Buttons" style="flex-direction: row; margin-left: 3px; margin-right: 3px; margin-top: 3px; margin-bottom: 3px;">
+        <ui:Button name="AddRoom-button" tooltip="Add Room" class="toolbar-button" style="width: 30px; height: 30px; margin-top: 3px; margin-bottom: 3px; padding-left: 6px; padding-right: 6px; padding-top: 6px; padding-bottom: 6px;">
+            <ui:VisualElement class="add-room" style="background-image: url(&apos;project://database/Packages/com.magicleap.appsim/Icons/AddRoom.png?fileID=21300000&amp;guid=d6ef115bfa63341cf86caee56eb35be5&amp;type=3#AddRoom&apos;); width: auto; height: 64px;" />
+        </ui:Button>
+        <ui:Button name="AddModel-button" tooltip="Add Model" class="toolbar-button" style="width: 30px; height: 30px; margin-top: 3px; margin-bottom: 3px; padding-left: 6px; padding-right: 6px; padding-top: 6px; padding-bottom: 6px;">
+            <ui:VisualElement class="add-model" style="background-image: url(&apos;project://database/Packages/com.magicleap.appsim/Icons/AddModel.png?fileID=21300000&amp;guid=74f14d316bb67413cb14bdee0c841f50&amp;type=3#AddModel&apos;); width: auto; height: 64px;" />
+        </ui:Button>
+        <ui:Button name="ClearScene-button" tooltip="Clear Scene" class="toolbar-button" style="width: 30px; height: 30px; margin-top: 3px; margin-bottom: 3px; padding-left: 6px; padding-right: 6px; padding-top: 6px; padding-bottom: 6px;">
+            <ui:VisualElement class="clear-scene" style="background-image: url(&apos;project://database/Packages/com.magicleap.appsim/Icons/ClearScene.png?fileID=21300000&amp;guid=804d76c40a8cc4417a725735cad40a09&amp;type=3#ClearScene&apos;); width: auto; height: 64px;" />
+        </ui:Button>
+    </ui:VisualElement>
+    <uie:Toolbar name="Toolbar" style="justify-content: center; min-height: 20px;">
+        <uie:ToolbarToggle label="Scene Objects" name="SceneObjectsTab-toggle" value="true" focusable="false" style="width: 96px;" />
+        <uie:ToolbarToggle label="Tracked Objects" name="TrackedObjectsTab-toggle" focusable="false" style="width: 105px;" />
+    </uie:Toolbar>
+    <ui:TwoPaneSplitView fixed-pane-initial-dimension="250" orientation="Vertical" name="SplitView" style="flex-direction: row;">
+        <ui:VisualElement name="Tabs-content" style="flex-shrink: 1; flex-basis: auto; height: auto;">
+            <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" name="HierarchyScrollView">
+                <ui:VisualElement name="TrackedObjects" focusable="true" />
+                <ui:VisualElement name="SceneObjects" focusable="true" />
+            </ui:ScrollView>
+        </ui:VisualElement>
+        <ui:VisualElement name="Properties-window" style="justify-content: flex-start; align-items: stretch; height: 250px;">
+            <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1">
+                <ui:Foldout text="Properties" name="GeneralProperties-foldout" style="flex-grow: 1; position: relative;">
+                    <ui:VisualElement name="General-properties">
+                        <ui:TextField picking-mode="Ignore" label="Type" value="Directional Light" text="Light Node" readonly="true" focusable="false" name="Type-field" class="narrow-label unity-base-field__input labeled-text" style="margin-right: 3px; margin-top: 1px; margin-bottom: 1px;" />
+                        <ui:TextField picking-mode="Ignore" label="Name" value="Directional Light" text="Directional Light" readonly="false" name="Name-field" class="narrow-label" />
+                        <ui:IMGUIContainer name="Position-field" style="height: auto; margin-left: 3px; margin-right: 3px; margin-top: 1px; margin-bottom: 1px; max-width: 100%; min-width: 50%;" />
+                        <ui:IMGUIContainer name="Orientation-field" style="height: auto; margin-left: 3px; margin-right: 3px; margin-top: 1px; margin-bottom: 1px;" />
+                        <ui:IMGUIContainer name="Scale-field" style="height: auto; -unity-text-align: middle-left; white-space: nowrap; justify-content: center; margin-left: 3px; margin-right: 2px; margin-top: 1px; margin-bottom: 1px;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Light-properties" style="margin-top: 15px; display: flex;">
+                        <uie:EnumField label="Light Type" value="Center" name="Light-type" class="narrow-label" />
+                        <uie:ColorField label="Light Color" value="RGBA(0.000, 1.000, 1.000, 1.000)" name="Light-color" class="narrow-label" />
+                        <ui:Slider picking-mode="Ignore" label="Light Intensity" value="1" high-value="10" show-input-field="true" name="Light-intensity" low-value="0,01" class="narrow-label" />
+                        <uie:FloatField label="Light Range" value="42,2" name="Light-range" class="narrow-label" />
+                        <ui:Slider picking-mode="Ignore" label="Light Cone Angle" value="0" high-value="180" show-input-field="true" name="Light-angle" low-value="0,01" class="narrow-label" />
+                    </ui:VisualElement>
+                </ui:Foldout>
+            </ui:ScrollView>
+        </ui:VisualElement>
+    </ui:TwoPaneSplitView>
+</ui:UXML>

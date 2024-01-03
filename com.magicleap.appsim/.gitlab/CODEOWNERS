@@ -1,0 +1,20 @@
+[scripts/assets]
+Runtime/ @eswartz @asankaranarayanan
+ZIFUnity/ @eswartz @asankaranarayanan
+Icons/ @eswartz @asankaranarayanan
+Style/ @eswartz @asankaranarayanan
+
+[ZIF libraries]
+# devs typically should not be changing these
+# commits should normally be pushed by Jenkins CI
+Plugins/ @bsawyer @eswartz
+
+[package file]
+package.json @bsawyer @eswartz
+
+[repo metadata]
+.git* @bsawyer
+.lfsconfig @bsawyer
+.npmignore @bsawyer
+LICENSE @bsawyer 
+README.md @bsawyer

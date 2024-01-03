@@ -1,0 +1,57 @@
+#FollowHead-toggle > .unity-label {
+    min-width: 0;
+}
+
+#Link-toggle > * > .unity-toggle__checkmark {
+    background-image: url('/Packages/com.magicleap.appsim/Icons/Link.png');
+    -unity-background-image-tint-color: rgb(96, 96, 96);
+    -unity-background-scale-mode: scale-to-fit;
+    min-width: 16px;
+    max-width: 16px;
+    min-height: 16px;
+    max-height: 16px;
+}
+
+#Link-toggle:checked > * > .unity-toggle__checkmark {
+    background-image: url('/Packages/com.magicleap.appsim/Icons/Link.png');
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+#NewMarkerType-dropdown > .unity-popup-field__label {
+    min-width: 30px;
+    max-width: 30px;
+}
+
+#Type > .unity-popup-field__label {
+    min-width: 100px;
+    max-width: 100px;
+}
+
+.unity-float-field {
+    width: 0;
+    align-items: flex-end;
+}
+
+.trackingState__Unknown {
+    -unity-background-image-tint-color: white;
+}
+
+.trackingState__NotTracked {
+    -unity-background-image-tint-color: gray;
+    color: gray;
+}
+
+.trackingState__Unreliable {
+    -unity-background-image-tint-color: red;
+    color: red;
+}
+
+.trackingState__Tracked {
+    -unity-background-image-tint-color: green;
+    color: green;
+}
+
+.invalid-text-field {
+    border-color: red;
+}

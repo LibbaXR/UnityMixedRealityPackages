@@ -1,0 +1,15 @@
+.indentation-1 {
+    margin-left: 15px;
+}
+
+.unity-slider > .unity-label {
+    min-width: 100px;
+}
+
+.unity-enum-field > .unity-label {
+    min-width: 100px;
+}
+
+.unity-vector3-field > .unity-label {
+    min-width: 100px;
+}

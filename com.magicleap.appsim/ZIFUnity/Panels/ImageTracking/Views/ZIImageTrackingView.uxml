@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" ml="UnityEditor.XR.MagicLeap" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/_Common/ZIGeneralStyleSheet.uss?fileID=7433441132597879392&amp;guid=1034af72768fe36458d869f9b10e5e52&amp;type=3#ZIGeneralStyleSheet" />
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/ImageTracking/Views/ZIImageTrackingStyle.uss?fileID=7433441132597879392&amp;guid=36b89d7df49be8a4286bb826ecc200d7&amp;type=3#ZIImageTrackingStyle" />
+    <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" mode="VerticalAndHorizontal" name="ScrollView" style="margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px;">
+        <ui:VisualElement name="FollowHead-content" style="justify-content: flex-start; align-items: flex-end; flex-shrink: 0;">
+            <ui:Toggle label="Follow Head Pose  " name="FollowHead-toggle" tooltip="Enables the image target gizmo headpose follow mode (for all image targets)" style="align-items: stretch;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="AddMarkerBar" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-direction: row-reverse; flex-shrink: 0; align-items: stretch;">
+            <ui:Button text="Add Marker" name="AddTarget-button" tooltip="Insert a new item in the list" />
+            <ui:DropdownField label="Type" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="NewMarkerType-dropdown" style="flex-grow: 1; flex-shrink: 0;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="content" style="flex-shrink: 0; align-items: flex-start;" />
+    </ui:ScrollView>
+</ui:UXML>

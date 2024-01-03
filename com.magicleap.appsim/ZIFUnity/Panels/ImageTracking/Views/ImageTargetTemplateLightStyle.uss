@@ -1,0 +1,9 @@
+.unity-foldout {
+}
+
+.unity-foldout--depth-0 {
+}
+
+.delete-button {
+	-unity-background-image-tint-color: rgb(96, 96, 96);
+}

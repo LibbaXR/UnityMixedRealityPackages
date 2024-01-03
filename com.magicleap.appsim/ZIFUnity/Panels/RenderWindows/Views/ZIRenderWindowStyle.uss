@@ -1,0 +1,259 @@
+﻿.renderToolbarButton {
+    -unity-background-scale-mode: scale-to-fit;
+    min-width: auto;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    width: 26px;
+    height: 22px;
+    margin-left: 1px;
+    margin-right: 1px;
+    margin-top: 2px;
+}
+
+.addRoom {
+    background-image: url('project://database/Packages/com.magicleap.appsim/Icons/AddRoom.png?fileID=21300000&guid=d6ef115bfa63341cf86caee56eb35be5&type=3#AddRoom');
+}
+
+.addModel {
+    background-image: url('project://database/Packages/com.magicleap.appsim/Icons/AddModel.png?fileID=21300000&guid=74f14d316bb67413cb14bdee0c841f50&type=3#AddModel');
+}
+
+.clearScene {
+    background-image: url('project://database/Packages/com.magicleap.appsim/Icons/ClearScene.png?fileID=21300000&guid=804d76c40a8cc4417a725735cad40a09&type=3#ClearScene');
+}
+
+.moveManipulationModeIcon {
+    background-image: url('project://database/Packages/com.magicleap.appsim/Icons/SceneViewToolbar/Move.png?fileID=2800000&guid=8492a97a5efa4f64b838dfc4d55011e5&type=3#Move');
+}
+
+.noneManipulationModeIcon {
+    background-image: url('project://database/Packages/com.magicleap.appsim/Icons/SceneViewToolbar/Select.png?fileID=2800000&guid=7767ad985567fb94f8a8c05a80a3f590&type=3#Select');
+}
+
+.rotateManipulateModeIcon {
+    background-image: url('project://database/Packages/com.magicleap.appsim/Icons/SceneViewToolbar/Rotate.png?fileID=2800000&guid=8ce4e904ed3528944861afd4b3d89aad&type=3#Rotate');
+}
+
+.scaleManipulateModeIcon {
+    background-image: url('project://database/Packages/com.magicleap.appsim/Icons/SceneViewToolbar/Scale.png?fileID=2800000&guid=580f414a7829d6942982fabbdc2c42f1&type=3#Scale');
+}
+
+.anchorCenterModeIcon {
+    background-image: url('project://database/Packages/com.magicleap.appsim/Icons/SceneViewToolbar/AnchorCenter.png?fileID=2800000&guid=f4c1950497f69644a84fcb4f6ca210ac&type=3#AnchorCenter');
+}
+
+.anchorPivotModeIcon {
+    background-image: url('project://database/Packages/com.magicleap.appsim/Icons/SceneViewToolbar/AnchorPivot.png?fileID=2800000&guid=b3d662899b5400d41bf7d3f750d695d1&type=3#AnchorPivot');
+}
+
+.localReferenceModeIcon {
+    background-image: url('project://database/Packages/com.magicleap.appsim/Icons/SceneViewToolbar/ReferenceLocal.png?fileID=2800000&guid=443f0a6345d821540b65d4f264e4dd64&type=3#ReferenceLocal');
+}
+
+.worldReferenceModeIcon {
+    background-image: url('project://database/Packages/com.magicleap.appsim/Icons/SceneViewToolbar/ReferenceWorld.png?fileID=2800000&guid=f23b7ad43eba0ee4aab0fc1ff653eaa9&type=3#ReferenceWorld');
+}
+
+.topDownCameraModeIcon {
+    background-image: url('project://database/Packages/com.magicleap.appsim/Icons/SceneViewToolbar/TopDownCamera.png?fileID=2800000&guid=a6b59213e700688469c4d658d32174d9&type=3#TopDownCamera');
+}
+
+.freeFlyCameraModeIcon {
+    background-image: url('project://database/Packages/com.magicleap.appsim/Icons/SceneViewToolbar/FreeFlyCamera.png?fileID=2800000&guid=0b937e909a422994fb3709a080075ce6&type=3#FreeFlyCamera');
+}
+
+.resetCameraIcon {
+    background-image: url('project://database/Packages/com.magicleap.appsim/Icons/SceneViewToolbar/ResetCamera.png?fileID=2800000&guid=7c70d0135e61cff4fb414285f8432403&type=3#ResetCamera');
+}
+
+.gizmoIcon {
+    background-image: url('project://database/Packages/com.magicleap.appsim/Icons/SceneViewToolbar/RenderGizmos.png?fileID=2800000&guid=1389bfc7bc5f5e049b8fc028bcb519f6&type=3#RenderGizmos');
+}
+
+.resetHeadposeIcon {
+    background-image: url('project://database/Packages/com.magicleap.appsim/Icons/DeviceViewToolbar/ResetHeadpose.png?fileID=2800000&guid=3d754452cf7a8c049b26a4a93e64da18&type=3#ResetHeadpose');
+}
+
+.twoEyeModeIcon {
+    background-image: url('project://database/Packages/com.magicleap.funity/Icons/DeviceViewToolbar/TwoEyeCamera.png?fileID=2800000&guid=1e602b6b614e70948a21bcfc04713bd2&type=3#TwoEyeCamera');
+}
+
+.renderToolbar {
+    justify-content: center;
+    height: 26px;
+    align-items: center;
+    flex-direction: row;
+    flex-shrink: 0;
+}
+
+.renderToolbarButton {
+}
+
+.renderToolbarMenuButton {
+    background-image: none;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
+
+.renderToolbarMenuButtonIcon {
+    align-items: auto;
+    flex-direction: row;
+    width: 14px;
+    height: 14px;
+    position: absolute;
+}
+
+.menuItemLabel {
+    height: 100%;
+    font-size: 12px;
+    -unity-text-align: middle-left;
+    padding-left: 5px;
+    top: auto;
+}
+
+.menuItemIcon {
+    width: 14px;
+    height: 14px;
+    -unity-background-scale-mode: scale-to-fit;
+    margin-left: 5px;
+    top: 3px;
+}
+
+.anchoredRightCheckbox {
+    position: absolute;
+    right: 0;
+    height: 100%;
+    -unity-background-scale-mode: scale-to-fit;
+    min-width: 30px;
+    margin-right: 6px;
+}
+
+.scaledIcon {
+    margin-left: 6px;
+    margin-right: 6px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    width: 10%;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.menuItemButton {
+    flex-direction: row;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.dropdownMenu {
+    top: 24px;
+    min-width: 100px;
+    min-height: 100px;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.manipulationModeMenuLayout {
+    min-width: 200px;
+    min-height: 170px;
+}
+
+.menuItem {
+    margin-left: 0;
+    margin-right: 0;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    height: 32px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.menuHeaderLabel {
+    -unity-text-align: middle-left;
+}
+
+.anchorModeMenuLayout {
+    min-height: 105px;
+    min-width: 200px;
+}
+
+.referenceModeMenuLayout {
+    min-width: 200px;
+    min-height: 105px;
+}
+
+.cameraModeMenuLayout {
+    min-width: 200px;
+    min-height: 130px;
+}
+
+.checkIcon {
+}
+
+.gizmoToggle {
+    -unity-text-align: middle-left;
+    padding-top: 3px;
+    font-size: 11px;
+    flex-direction: row;
+    flex-grow: 1;
+    overflow: true;
+    align-self: flex-start;
+}
+
+.gizmoToggle > .unity-toggle__label {
+    flex-grow: 1;
+    min-width: 160px;
+}
+
+.gizmoToggle > .unity-toggle__input {
+    flex-grow: 1;
+}
+
+.toggleMenu {
+    height: auto;
+    min-width: 185px;
+    min-height: 390px;
+    padding-top: 5px;
+    padding-left: 1px;
+    padding-right: 1px;
+    align: stretch;
+    flex-grow: 1;
+    flex-direction: column;
+    display: flex;
+}
+
+.menuItemSelected {
+    background-image: url('project://database/Packages/com.magicleap.appsim/Icons/GradientBackground.png?fileID=2800000&guid=524c94b83b7df8945ad6779c12cac619&type=3#GradientBackground');
+}
+
+.menuItemHovered {
+}
+
+.tooltipArea {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+}

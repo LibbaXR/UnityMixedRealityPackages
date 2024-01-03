@@ -1,0 +1,19 @@
+﻿<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" ml="UnityEditor.XR.MagicLeap" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/SystemEvents/Views/SystemEventsStyle.uss?fileID=7433441132597879392&amp;guid=b164b799c6191fd4da6453040cda038f&amp;type=3#SystemEventsStyle" />
+    <ui:Foldout name="foldout" style="display: flex;">
+        <ui:DropdownField label="Event" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="event-dropdown" />
+        <ui:Label tabindex="-1" text="The system is requesting the application to stop" display-tooltip-when-elided="true" name="info-label" style="-unity-font-style: bold; margin-top: 5px; white-space: normal; margin-bottom: 0;" />
+        <ui:VisualElement name="warning-object" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; justify-content: flex-start; align-items: center; margin-top: 10px;">
+            <ui:VisualElement name="Warning-dot" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); width: 4px; height: 4px; border-left-color: rgb(219, 82, 100); border-right-color: rgb(219, 82, 100); border-top-color: rgb(219, 82, 100); border-bottom-color: rgb(219, 82, 100); border-left-width: 4px; border-right-width: 4px; border-top-width: 4px; border-bottom-width: 4px; border-top-left-radius: 4px; border-bottom-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px;" />
+            <ui:Label tabindex="-1" text="Not available: An application must be running in order to trigger event." display-tooltip-when-elided="true" name="warning-label" style="margin-left: 5px; white-space: normal; margin-right: 10px; margin-bottom: 10px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="parameters-container" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); margin-top: 10px;" />
+        <ui:VisualElement name="action-buttons" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row-reverse; margin-top: 10px; margin-bottom: 10px;">
+            <ui:Button tabindex="-1" display-tooltip-when-elided="true" name="fire-button" class="EventButton FireButton">
+                <ui:VisualElement name="loading-image" class="LoadingImage" />
+                <ui:Label tabindex="-1" text="Trigger Event" display-tooltip-when-elided="true" name="fire-button-text" />
+            </ui:Button>
+            <ui:Button tabindex="-1" text="Cancel" display-tooltip-when-elided="true" name="cancel-button" class="EventButton CancelButton" />
+        </ui:VisualElement>
+    </ui:Foldout>
+</ui:UXML>

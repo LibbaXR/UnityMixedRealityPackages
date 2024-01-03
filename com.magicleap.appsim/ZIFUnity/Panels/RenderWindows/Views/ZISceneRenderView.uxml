@@ -1,0 +1,117 @@
+﻿<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" ml="UnityEditor.XR.MagicLeap" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/RenderWindows/Views/ZIRenderWindowStyle.uss?fileID=7433441132597879392&amp;guid=a92b955e56f416f4799c3612f0371227&amp;type=3#ZIRenderWindowStyle" />
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/_Common/ZIGeneralStyleSheet.uss?fileID=7433441132597879392&amp;guid=1034af72768fe36458d869f9b10e5e52&amp;type=3#ZIGeneralStyleSheet" />
+    <ui:VisualElement name="Layout" style="height: 100%; width: 100%;">
+        <ui:IMGUIContainer name="RenderGUI" style="width: 100%; height: auto; position: absolute; flex-shrink: 0; top: 26px; bottom: 0;" />
+        <uie:Toolbar name="Toolbar" class="renderToolbar">
+            <uie:ToolbarButton name="AddRoomBtn" tooltip="Add Room" class="renderToolbarButton addRoom" />
+            <uie:ToolbarButton name="AddModelBtn" tooltip="Add Model" class="renderToolbarButton addModel" />
+            <uie:ToolbarButton name="ClearSceneBtn" tooltip="Clear Scene" class="renderToolbarButton clearScene" />
+            <uie:ToolbarButton name="ManipulationModeBtn" class="renderToolbarButton moveManipulationModeIcon">
+                <ui:VisualElement name="ManipulationModeMenu" class="dropdownMenu manipulationModeMenuLayout">
+                    <ui:Label text="Set Manipulation Mode" name="Heading" class="menuHeaderLabel menuItem" />
+                    <ui:Button name="ManipulationMode-None" class="menuItemButton menuItem">
+                        <ui:VisualElement name="Icon" class="noneManipulationModeIcon scaledIcon" />
+                        <ui:Label text="None" name="Label" class="menuButtonLabel" />
+                        <ui:VisualElement name="Checkbox" class="anchoredRightCheckbox" />
+                    </ui:Button>
+                    <ui:Button name="ManipulationMode-Move" class="menuItemButton menuItem">
+                        <ui:VisualElement name="Icon" class="scaledIcon moveManipulationModeIcon" />
+                        <ui:Label text="Move" name="Label" class="menuButtonLabel" />
+                        <ui:VisualElement name="Checkbox" class="anchoredRightCheckbox" />
+                    </ui:Button>
+                    <ui:Button name="ManipulationMode-Rotate" class="menuItemButton menuItem">
+                        <ui:VisualElement name="Icon" class="scaledIcon rotateManipulateModeIcon" />
+                        <ui:Label text="Rotate" name="Label" class="menuButtonLabel" />
+                        <ui:VisualElement name="Checkbox" class="anchoredRightCheckbox" />
+                    </ui:Button>
+                    <ui:Button name="ManipulationMode-Scale" class="menuItemButton menuItem">
+                        <ui:VisualElement name="Icon" class="scaledIcon scaleManipulateModeIcon" />
+                        <ui:Label text="Scale" name="Label" class="menuButtonLabel" />
+                        <ui:VisualElement name="Checkbox" class="anchoredRightCheckbox" />
+                    </ui:Button>
+                </ui:VisualElement>
+                <ui:VisualElement tooltip="Manipulation Mode" name="Tooltip" class="tooltipArea" />
+            </uie:ToolbarButton>
+            <uie:ToolbarButton name="AnchorModeBtn" class="renderToolbarButton anchorPivotModeIcon">
+                <ui:VisualElement name="AnchorModeMenu" class="dropdownMenu anchorModeMenuLayout">
+                    <ui:Label text="Set Anchor Mode" name="Heading" class="menuHeaderLabel menuItem" />
+                    <ui:Button name="AnchorMode-Pivot" class="menuItemButton menuItem">
+                        <ui:VisualElement name="Icon" class="scaledIcon anchorPivotModeIcon" />
+                        <ui:Label text="Pivot" name="Label" class="menuButtonLabel" />
+                        <ui:VisualElement name="Checkbox" class="anchoredRightCheckbox" />
+                    </ui:Button>
+                    <ui:Button name="AnchorMode-Center" class="menuItemButton menuItem">
+                        <ui:VisualElement name="Icon" class="scaledIcon anchorCenterModeIcon" />
+                        <ui:Label text="Center" name="Label" class="menuButtonLabel" />
+                        <ui:VisualElement name="Checkbox" class="anchoredRightCheckbox" />
+                    </ui:Button>
+                </ui:VisualElement>
+                <ui:VisualElement tooltip="Anchor Mode" name="Tooltip" class="tooltipArea" />
+            </uie:ToolbarButton>
+            <uie:ToolbarButton name="ReferenceModeBtn" class="renderToolbarButton localReferenceModeIcon">
+                <ui:VisualElement name="ReferenceModeMenu" class="dropdownMenu referenceModeMenuLayout">
+                    <ui:Label text="Set Reference Mode" name="Heading" class="menuHeaderLabel menuItem" />
+                    <ui:Button name="ReferenceMode-Local" class="menuItemButton menuItem">
+                        <ui:VisualElement name="Icon" class="scaledIcon localReferenceModeIcon" />
+                        <ui:Label text="Local" name="Label" class="menuButtonLabel" />
+                        <ui:VisualElement name="Checkbox" class="anchoredRightCheckbox" />
+                    </ui:Button>
+                    <ui:Button name="ReferenceMode-World" class="menuItemButton menuItem">
+                        <ui:VisualElement name="Icon" class="scaledIcon worldReferenceModeIcon" />
+                        <ui:Label text="World" name="Label" class="menuButtonLabel" />
+                        <ui:VisualElement name="Checkbox" class="anchoredRightCheckbox" />
+                    </ui:Button>
+                </ui:VisualElement>
+                <ui:VisualElement tooltip="Reference Mode" name="Tooltip" class="tooltipArea" />
+            </uie:ToolbarButton>
+            <uie:ToolbarButton name="CameraModeBtn" class="renderToolbarButton freeFlyCameraModeIcon">
+                <ui:VisualElement name="CameraModeMenu" class="dropdownMenu cameraModeMenuLayout">
+                    <ui:Label text="Set Scene View Camera Mode" name="Heading" class="menuHeaderLabel menuItem" />
+                    <ui:Button name="CameraMode-TopDown" class="menuItemButton menuItem">
+                        <ui:VisualElement name="Icon" class="scaledIcon topDownCameraModeIcon" />
+                        <ui:Label text="Top Down Camera" name="Label" class="menuButtonLabel" />
+                        <ui:VisualElement name="Checkbox" class="anchoredRightCheckbox" />
+                    </ui:Button>
+                    <ui:Button name="CameraMode-FreeFly" class="menuItemButton menuItem">
+                        <ui:VisualElement name="Icon" class="scaledIcon freeFlyCameraModeIcon" />
+                        <ui:Label text="Free Fly Camera" name="Label" class="menuButtonLabel" />
+                        <ui:VisualElement name="Checkbox" class="anchoredRightCheckbox" />
+                    </ui:Button>
+                    <ui:Button name="CameraMode-Reset" class="menuItemButton menuItem">
+                        <ui:VisualElement name="Icon" class="scaledIcon resetCameraIcon" />
+                        <ui:Label text="Reset Camera" name="Label" class="menuButtonLabel" />
+                    </ui:Button>
+                </ui:VisualElement>
+                <ui:VisualElement tooltip="Camera Mode" name="Tooltip" class="tooltipArea" />
+            </uie:ToolbarButton>
+            <uie:ToolbarButton name="GizmosBtn" class="renderToolbarButton gizmoIcon">
+                <ui:VisualElement name="GizmosMenu" class="dropdownMenu toggleMenu" style="width: auto; flex-grow: 1; min-height: 30px; flex-shrink: 0; color: rgb(196, 196, 196); padding-bottom: 5px;">
+                    <ui:Toggle label="GIZMOS" name="GizmosToggle-All" value="true" class="gizmoToggle" style="padding-bottom: 4px; border-bottom-width: 1px; border-bottom-color: rgba(120, 120, 120, 0.5);" />
+                    <ui:VisualElement name="StaticGizmos" style="display: none; visibility: hidden;">
+                        <ui:Toggle label="Cache Grid" name="GizmosToggle-CacheGrid" class="gizmoToggle" />
+                        <ui:Toggle label="Co-Planar Features" name="GizmosToggle-CoPlanar" class="gizmoToggle" />
+                        <ui:Toggle label="Compass" name="GizmosToggle-Compass" value="true" class="gizmoToggle" />
+                        <ui:Toggle label="Controls" name="GizmosToggle-Controls" value="true" class="gizmoToggle" />
+                        <ui:Toggle label="Device View Pivot Point" name="GizmosToggle-DeviceViewPivot" value="true" class="gizmoToggle" />
+                        <ui:Toggle label="Eye Fixation" name="GizmosToggle-EyeFixation" value="true" class="gizmoToggle" />
+                        <ui:Toggle label="Eye Gaze Arrows" name="GizmosToggle-EyeGazeArrows" class="gizmoToggle" />
+                        <ui:Toggle label="Hands" name="GizmosToggle-Hands" value="true" class="gizmoToggle" />
+                        <ui:Toggle label="Image Targets" name="GizmosToggle-ImageTargets" value="true" class="gizmoToggle" />
+                        <ui:Toggle label="Light Mesh" name="GizmosToggle-LightMesh" class="gizmoToggle" />
+                        <ui:Toggle label="Meshing Frustum" name="GizmosToggle-MeshFrustum" value="true" class="gizmoToggle" />
+                        <ui:Toggle label="Scene View Pivot Point" name="GizmosToggle-SceneViewPivotPoint" value="true" class="gizmoToggle" />
+                        <ui:Toggle label="ViewFrustum" name="GizmosToggle-ViewFrustum" class="gizmoToggle" />
+                        <ui:Toggle label="View Grid" name="GizmosToggle-ViewGrid" value="true" class="gizmoToggle" />
+                        <ui:Toggle label="Wearable" name="GizmosToggle-Wearable" value="true" class="gizmoToggle" />
+                        <ui:Toggle label="Cache Block Data Mesh" name="GizmosToggle-CacheBlock" class="gizmoToggle" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement tooltip="Gizmos" name="Tooltip" class="tooltipArea" />
+            </uie:ToolbarButton>
+        </uie:Toolbar>
+        <ui:VisualElement name="ConnectionStatusPanel" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; justify-content: center; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; display: none;">
+            <ui:Label text="Please start a Magic Leap App Simulator session to enable Scene View" display-tooltip-when-elided="true" name="ConnectionStatusLabel" focusable="false" style="align-items: center; -unity-text-align: middle-center; white-space: normal; font-size: 16px; visibility: visible; overflow: hidden; display: flex;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

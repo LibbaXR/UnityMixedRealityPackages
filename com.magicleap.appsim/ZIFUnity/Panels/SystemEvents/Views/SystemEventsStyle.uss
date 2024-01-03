@@ -1,0 +1,33 @@
+﻿.CancelButton {
+}
+
+.EventButton {
+    border-top-left-radius: 9px;
+    border-bottom-left-radius: 9px;
+    border-top-right-radius: 9px;
+    border-bottom-right-radius: 9px;
+    margin-left: 3px;
+    margin-right: 3px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.FireButton {
+    background-image: url('project://database/Packages/com.magicleap.appsim/Icons/GradientBackground.png?fileID=2800000&guid=524c94b83b7df8945ad6779c12cac619&type=3#GradientBackground');
+    max-height: 18px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.LoadingImage {
+    width: 13px;
+    background-image: url('project://database/Packages/com.unity.render-pipelines.core/Editor/LookDev/Icons/d_Rotation@2x.png?fileID=2800000&guid=db7aaa162a1a5a54b826d15b5b20fb06&type=3#d_Rotation@2x');
+    height: 13px;
+    margin-right: 5px;
+}

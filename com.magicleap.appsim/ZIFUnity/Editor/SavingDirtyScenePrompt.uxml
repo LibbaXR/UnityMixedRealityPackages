@@ -1,0 +1,14 @@
+﻿<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" ml="UnityEditor.XR.MagicLeap" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Editor/CheckboxDialogStyle.uss?fileID=7433441132597879392&amp;guid=08f61706932709549bda2807346f345e&amp;type=3#CheckboxDialogStyle" />
+    <ui:VisualElement name="DialogPanel" class="root dialog-panel">
+        <ui:VisualElement name="DialogContent" class="dialog-content">
+            <ui:Label text="Dialog message" name="DialogMessage" class="dialog-text dialog-message" />
+            <ui:Toggle name="DialogToggle" label="Don&apos;t ask me again" class="dialog-toggle" />
+        </ui:VisualElement>
+        <ui:VisualElement name="DialogButtons" class="dialog-buttons">
+            <ui:Button text="Cancel" display-tooltip-when-elided="true" name="CancelButton" class="yes-button" style="width: 75px;" />
+            <ui:Button text="No" display-tooltip-when-elided="true" name="NoButton" class="no-button" style="width: 75px;" />
+            <ui:Button text="Yes" display-tooltip-when-elided="true" name="YesButton" class="yes-button" style="width: 75px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

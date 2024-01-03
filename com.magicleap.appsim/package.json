@@ -1,0 +1,24 @@
+{
+  "name": "com.magicleap.appsim",
+  "displayName": "Magic Leap App Simulator for Unity",
+  "version": "3.7.0-20231006",
+  "unity": "2022.2",
+  "description": "Allows using Magic Leap App Simulator for Unity directly from the Unity editor. This requires installing Magic Leap Hub and installing the Magic Leap App Simulator Runtime.",
+  "keywords": [
+    "magicleap",
+    "ar",
+    "augmented",
+    "xr",
+    "reality"
+  ],
+  "author": {
+    "name": "Magic Leap",
+    "url": "https://developer.magicleap.com/"
+  },
+  "type": "tool",
+  "dependencies": {
+    "com.magicleap.unitysdk": "1.1.0",
+    "com.unity.editorcoroutines": "1.0.0"
+  },
+  "resolutionStrategy": "highestPatch"
+}

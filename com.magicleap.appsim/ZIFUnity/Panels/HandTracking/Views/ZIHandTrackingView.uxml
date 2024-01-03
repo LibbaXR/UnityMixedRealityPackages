@@ -1,0 +1,136 @@
+﻿<!-- %BANNER_BEGIN%
+// %COPYRIGHT_BEGIN%
+//
+// Copyright (c) (2021-2023) Magic Leap, Inc. All Rights Reserved.
+// Use of this file is governed by the Software License Agreement, located here: https://www.magicleap.com/software-license-agreement-ml2
+// Terms and conditions applicable to third-party materials accompanying this distribution may also be found in the top-level NOTICE file appearing herein.
+// %COPYRIGHT_END%
+//
+// %COPYRIGHT_END%
+// %BANNER_END%-->
+
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" ml="UnityEditor.XR.MagicLeap" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/HandTracking/Views/ZIHandTrackingStyle.uss?fileID=7433441132597879392&amp;guid=3aa59e326697da44583519a56fe799cf&amp;type=3#ZIHandTrackingStyle" />
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/_Common/ZIGeneralStyleSheet.uss?fileID=7433441132597879392&amp;guid=1034af72768fe36458d869f9b10e5e52&amp;type=3#ZIGeneralStyleSheet" />
+    <ui:Template src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/_Common/ResetButton/ResetButton.uxml" name="ResetTransformTemplate"/>
+    <ui:ScrollView>
+        <ui:Foldout text="Left" name="Left-toolbar">
+            <ui:VisualElement name="Left-content" style="flex-direction: column; margin-right: 2px;">
+                <ui:Foldout text="Transform" name="LeftTransformFoldout" class="indentation-1">
+                    <ui:Instance template="ResetTransformTemplate" name="LeftHandResetTransform">
+                        <ui:AttributeOverrides element-name="ResetButton" tooltip="Reset Left Hand Center"/>
+                    </ui:Instance>
+                    <ui:VisualElement name="TransformContent" style="margin-left: 0; margin-bottom: 10px; padding-top: 0; padding-bottom: 0;">
+                        <ui:VisualElement name="FollowHeadPoseToggleContainer" tooltip="Enables the left hand gesture gizmo headpose follow mode" class="transformContentRow">
+                            <ui:Toggle label="Follow Head Pose" name="LeftFollowHeadPoseToggle" />
+                        </ui:VisualElement>
+                        <uie:Vector3Field label="Position" name="LeftPositionFields" class="transformContentRow" style="margin-left: 0;" />
+                        <uie:Vector3Field label="Orientation" name="LeftOrientationFields" class="transformContentRow" style="margin-left: 0;" />
+                    </ui:VisualElement>
+                </ui:Foldout>
+                <ui:VisualElement name="LabelsAndToggle" class="contentRow" style="height: 0;">
+                    <ui:VisualElement name="Labels" class="poseLabelContainer">
+                        <ui:Label text="Gesture" class="keyPoseBoldText" />
+                        <ui:Label text="None" name="LeftCurrentPoseValue" view-data-key="currentPoseName" class="currentPoseNameLabel" />
+                    </ui:VisualElement>
+                    <ui:Toggle label="Hold" name="Left-Hold-toggle" value="true" class="handHoldToggle" />
+                </ui:VisualElement>
+                <ui:VisualElement name="PoseButtonsContainer" class="contentRow buttonsRow">
+                    <ui:VisualElement name="LeftHandPoseButtons" class="poseButtonRow" style="flex-direction: row; flex-wrap: wrap; width: 100%; padding-top: 3px; padding-bottom: 3px; justify-content: center; align-items: center;">
+                        <ui:VisualElement name="LeftNoPoseBtn" tooltip="None" class="unity-button poseButton poseButtonLarge" style="width: 24px; height: 24px; justify-content: center;">
+                            <ui:VisualElement class="buttonIcon" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Separator" style="width: 1px; height: 24px; background-color: rgb(170, 172, 178); margin-left: 8px; margin-right: 8px; margin-top: 2px; margin-bottom: 2px;" />
+                        <ui:VisualElement name="Left-Point-Btn" class="unity-button poseButton" style="width: 24px; height: 24px; justify-content: center;">
+                            <ui:VisualElement tooltip="Finger" class="buttonIcon" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Left-Fist-Btn" class="unity-button poseButton" style="width: 24px; height: 24px; justify-content: center;">
+                            <ui:VisualElement tooltip="Fist" class="buttonIcon" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Left-Pinch-Btn" class="unity-button poseButton" style="width: 24px; height: 24px; justify-content: center;">
+                            <ui:VisualElement tooltip="Pinch" class="buttonIcon" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Left-Thumb-Btn" tooltip="Thumb" class="unity-button poseButton" style="width: 24px; height: 24px; justify-content: center;">
+                            <ui:VisualElement picking-mode="Ignore" class="buttonIcon" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Left-L-Btn" class="unity-button poseButton" style="width: 24px; height: 24px; justify-content: center;">
+                            <ui:VisualElement tooltip="L" class="buttonIcon" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Left-Open-Btn" class="unity-button poseButton" style="width: 24px; height: 24px; justify-content: center;">
+                            <ui:VisualElement tooltip="Open hand" class="buttonIcon" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Left-Ok-Btn" class="unity-button poseButton" style="width: 24px; height: 24px; justify-content: center;">
+                            <ui:VisualElement tooltip="Ok" class="buttonIcon" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Left-C-Btn" class="unity-button poseButton" style="width: 24px; height: 24px; justify-content: center;">
+                            <ui:VisualElement tooltip="C" class="buttonIcon" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Slider picking-mode="Ignore" label="Hand Confidence" value="0.5" high-value="1" show-input-field="true" name="LeftHandConfidenceSlider" class="resizedSlider contentRow indentation-1" />
+                <ui:VisualElement name="IsHoldingControl-Row" class="contentRow">
+                    <ui:Toggle label="Is Holding Control" name="LeftControlHoldToggle" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:Foldout>
+        <ui:Foldout text="Right" name="Right-toolbar">
+            <ui:VisualElement name="Right-content" style="flex-direction: column; margin-right: 2px;">
+                <ui:Foldout text="Transform" name="RightTransformFoldout" class="indentation-1">
+                    <ui:Instance template="ResetTransformTemplate" name="RightHandResetTransform">
+                        <ui:AttributeOverrides element-name="ResetButton" tooltip="Reset Right Hand Center"/>
+                    </ui:Instance>
+                    <ui:VisualElement name="TransformContent" class="transformContent" style="margin-left: 0; margin-bottom: 10px;">
+                        <ui:VisualElement name="FollowHeadPoseToggleContainer" class="transformContentRow">
+                            <ui:Toggle label="Follow Head Pose" name="RightFollowHeadPoseToggle" tooltip="Enables the right hand gesture gizmo headpose foolow mode" />
+                        </ui:VisualElement>
+                        <uie:Vector3Field label="Position" name="RightPositionFields" class="transformContentRow" style="margin-left: 0;" />
+                        <uie:Vector3Field label="Orientation" name="RightOrientationFields" class="transformContentRow" style="margin-left: 0;" />
+                    </ui:VisualElement>
+                </ui:Foldout>
+                <ui:VisualElement name="LabelsAndToggle" class="contentRow">
+                    <ui:VisualElement name="Labels" class="poseLabelContainer">
+                        <ui:Label text="Gesture" class="keyPoseBoldText" />
+                        <ui:Label text="None" name="RightCurrentPoseValue" view-data-key="currentPoseName" class="currentPoseNameLabel" />
+                    </ui:VisualElement>
+                    <ui:Toggle label="Hold" name="Right-Hold-toggle" value="true" class="handHoldToggle" />
+                </ui:VisualElement>
+                <ui:VisualElement name="PoseButtonsContainer" class="contentRow buttonsRow">
+                    <ui:VisualElement name="RightHandPoseButtons" class="poseButtonRow" style="flex-direction: row; flex-wrap: wrap; width: 100%; padding-top: 3px; padding-bottom: 3px; justify-content: center; align-items: center;">
+                        <ui:VisualElement name="RightNoPoseBtn" tooltip="None" class="unity-button poseButton poseButtonLarge" style="width: 24px; height: 24px; justify-content: center;">
+                            <ui:VisualElement class="buttonIcon" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Separator" style="width: 1px; height: 24px; background-color: rgb(170, 172, 178); margin-left: 8px; margin-right: 8px; margin-top: 2px; margin-bottom: 2px;" />
+                        <ui:VisualElement name="Right-Point-Btn" class="unity-button poseButton" style="justify-content: center; width: 24px; height: 24px;">
+                            <ui:VisualElement tooltip="Finger" class="buttonIcon" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Right-Fist-Btn" class="unity-button poseButton" style="width: 24px; height: 24px; justify-content: center;">
+                            <ui:VisualElement tooltip="Fist" class="buttonIcon" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Right-Pinch-Btn" class="unity-button poseButton" style="width: 24px; height: 24px; justify-content: center;">
+                            <ui:VisualElement tooltip="Pinch" class="buttonIcon" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Right-Thumb-Btn" tooltip="Thumb" class="unity-button poseButton" style="width: 24px; height: 24px; justify-content: center;">
+                            <ui:VisualElement picking-mode="Ignore" class="buttonIcon" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Right-L-Btn" class="unity-button poseButton" style="width: 24px; height: 24px; justify-content: center;">
+                            <ui:VisualElement tooltip="L" class="buttonIcon" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Right-Open-Btn" class="unity-button poseButton" style="width: 24px; height: 24px; justify-content: center;">
+                            <ui:VisualElement tooltip="Open hand" class="buttonIcon" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Right-Ok-Btn" class="unity-button poseButton" style="width: 24px; height: 24px; justify-content: center;">
+                            <ui:VisualElement tooltip="Ok" class="buttonIcon" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Right-C-Btn" class="unity-button poseButton" style="width: 24px; height: 24px; justify-content: center;">
+                            <ui:VisualElement tooltip="C" class="buttonIcon" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Slider picking-mode="Ignore" label="Hand Confidence" value="0.5" high-value="1" show-input-field="true" name="RightHandConfidenceSlider" class="resizedSlider indentation-1" />
+                <ui:VisualElement name="IsHoldingControl-Row">
+                    <ui:Toggle label="Is Holding Control" name="RightControlHoldToggle" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:Foldout>
+    </ui:ScrollView>
+</ui:UXML>

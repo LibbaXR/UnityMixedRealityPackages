@@ -1,0 +1,70 @@
+﻿#EyeBlink-toggle > .unity-label {
+    min-width: -25px;
+}
+
+#FollowHead-toggle > .unity-label {
+    min-width: 0;
+}
+
+#Link-toggle > * > .unity-toggle__checkmark {
+    background-image: url('project://database/Packages/com.magicleap.appsim/Icons/Link.png?fileID=2800000&guid=ee1a693d7305add49a45b62212b9a3af&type=3#Link');
+    -unity-background-scale-mode: scale-to-fit;
+    width: 16px;
+    height: 16px;
+}
+
+#Link-toggle:checked > * > .unity-toggle__checkmark {
+    background-image: url('project://database/Packages/com.magicleap.appsim/Icons/Link.png?fileID=2800000&guid=ee1a693d7305add49a45b62212b9a3af&type=3#Link');
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.wink-button {
+    margin-top: 1px;
+    margin-right: 3px;
+    margin-bottom: 1px;
+    margin-left: 3px;
+    padding-top: 1px;
+    padding-right: 6px;
+    padding-bottom: 1px;
+    padding-left: 6px;
+    border-width: 1px;
+    border-radius: 3px;
+    border-top-left-radius: 9px;
+    border-bottom-left-radius: 9px;
+    border-top-right-radius: 9px;
+    border-bottom-right-radius: 9px;
+}
+
+.wink-button-selected {
+    background-image: url('project://database/Packages/com.magicleap.appsim/Icons/GradientBackground.png?fileID=2800000&guid=524c94b83b7df8945ad6779c12cac619&type=3#GradientBackground');
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+}
+
+.unity-vector3-field > * > .unity-float-field {
+    width: 0;
+}
+
+.vector2-field {
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+.vector2-field VisualElement {
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.vector2-field .unity-float-field {
+    align-items: flex-end;
+}
+
+.constrained-button {
+    min-width: 100;
+}
+
+.spacer {
+    min-height: 10;
+}

@@ -1,0 +1,24 @@
+#Link-toggle > * > .unity-toggle__checkmark {
+    -unity-background-image-tint-color: rgb(96, 96, 96);
+}
+
+#Link-toggle:checked > * > .unity-toggle__checkmark {
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+.unity-foldout > .unity-toggle {
+    background-color: rgb(175, 175, 175);
+}
+
+.wink-button {
+    background-color: rgb(167, 167, 167);
+    border-color: rgb(89, 89, 89);
+}
+
+.wink-button-selected {
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    border-left-color: rgb(183, 160, 180);
+    border-right-color: rgb(183, 160, 180);
+    border-top-color: rgb(183, 160, 180);
+    border-bottom-color: rgb(183, 160, 180);
+}

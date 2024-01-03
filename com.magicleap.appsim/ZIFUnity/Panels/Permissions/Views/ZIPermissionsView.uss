@@ -1,0 +1,30 @@
+.unity-enum-field > .unity-enum-field__input {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-width: 0;
+}
+
+.permissionState__Pending > .background {
+    color: gray;
+    background-color: gray;
+}
+
+.permissionState__Pending > * > * > .unity-enum-field__input {
+    background-color: gray;
+}
+
+.permissionState__Allowed > .background{
+    background-color: limegreen;
+}
+
+.permissionState__Allowed > * > * > .unity-enum-field__input {
+    background-color: limegreen;
+}
+
+.permissionState__Denied > .background{
+    background-color: mediumvioletred;
+}
+
+.permissionState__Denied > * > * > .unity-enum-field__input {
+    background-color: mediumvioletred;
+}

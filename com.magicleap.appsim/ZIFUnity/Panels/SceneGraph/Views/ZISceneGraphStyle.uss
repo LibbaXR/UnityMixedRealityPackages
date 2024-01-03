@@ -1,0 +1,94 @@
+﻿#EyeBlink-toggle > .unity-label {
+    min-width: -25px;
+}
+
+#FollowHead-toggle > .unity-label {
+    min-width: 0;
+}
+
+#Link-toggle > * > .unity-toggle__checkmark {
+    background-image: url('project://database/Packages/com.magicleap.appsim/Icons/Link.png?fileID=2800000&guid=ee1a693d7305add49a45b62212b9a3af&type=3#Link');
+    -unity-background-scale-mode: scale-to-fit;
+    width: 16px;
+    height: 16px;
+}
+
+#Link-toggle:checked > * > .unity-toggle__checkmark {
+    background-image: url('project://database/Packages/com.magicleap.appsim/Icons/Link.png?fileID=2800000&guid=ee1a693d7305add49a45b62212b9a3af&type=3#Link');
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.sceneObject {
+    background-image: url('project://database/Packages/com.magicleap.appsim/Icons/Ellipse.png?fileID=2800000&guid=df4557ef561f9b44fa3d1a5390238315&type=3#Ellipse');
+    width: 6px;
+    height: 6px;
+}
+
+.sceneObject-room {
+    background-image: url('project://database/Packages/com.magicleap.appsim/Icons/Room.png?fileID=2800000&guid=b33e7d53fb1eba44d9ff208031be2028&type=3#Room');
+    width: 12px;
+    height: 12px;
+}
+
+.sceneObject-light {
+    background-image: url('project://database/Packages/com.magicleap.appsim/Icons/Room.png?fileID=2800000&guid=b33e7d53fb1eba44d9ff208031be2028&type=3#Room');
+    width: 6px;
+    height: 6px;
+}
+
+.narrow-label {
+}
+
+.narrow-label > .unity-base-field__input {
+    max-width: 100%;
+}
+
+.narrow-label > .unity-label {
+    max-width: 100%;
+    min-width: 90px;
+}
+
+.labeled-text {
+}
+
+.labeled-text > .unity-text-field__input {
+    cursor: initial;
+}
+
+#Light-range > .unity-base-field__input {
+    -unity-text-align: upper-right;
+    padding-right: 5px;
+}
+
+.unity-slider > * > * > .unity-base-field__input {
+    -unity-text-align: upper-right;
+    padding-right: 5px;
+}
+
+.unity-vector3-field > * > .unity-float-field {
+    width: 0;
+}
+
+.hoverable:hover {
+}
+
+.hovarable {
+}
+
+.selected {
+}
+
+.toolbar-button {
+}
+
+.toolbar-button:hover {
+}
+
+.add-room {
+}
+
+.add-model {
+}
+
+.clear-scene {
+}

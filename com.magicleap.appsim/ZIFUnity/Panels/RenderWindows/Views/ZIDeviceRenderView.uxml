@@ -1,0 +1,25 @@
+﻿<!-- %BANNER_BEGIN%
+// %COPYRIGHT_BEGIN%
+//
+// Copyright (c) (2021-2023) Magic Leap, Inc. All Rights Reserved.
+// Use of this file is governed by the Software License Agreement, located here: https://www.magicleap.com/software-license-agreement-ml2
+// Terms and conditions applicable to third-party materials accompanying this distribution may also be found in the top-level NOTICE file appearing herein.
+// %COPYRIGHT_END%
+//
+// %COPYRIGHT_END%
+// %BANNER_END%-->
+
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" ml="UnityEditor.XR.MagicLeap" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/RenderWindows/Views/ZIRenderWindowStyle.uss?fileID=7433441132597879392&amp;guid=a92b955e56f416f4799c3612f0371227&amp;type=3#ZIRenderWindowStyle" />
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/_Common/ZIGeneralStyleSheet.uss?fileID=7433441132597879392&amp;guid=1034af72768fe36458d869f9b10e5e52&amp;type=3#ZIGeneralStyleSheet" />
+    <ui:VisualElement name="Layout" style="height: 100%; width: 100%;">
+        <ui:IMGUIContainer name="RenderGUI" style="width: 100%; height: auto; position: absolute; top: 26px; bottom: 0;" />
+        <uie:Toolbar name="Toolbar" class="renderToolbar">
+            <uie:ToolbarButton name="TwoEyeModeBtn" tooltip="Toggle Two-Eyed Camera Mode" class="renderToolbarButton twoEyeModeIcon" />
+            <uie:ToolbarButton name="ResetHeadposeBtn" tooltip="Reset Headpose" class="renderToolbarButton resetHeadposeIcon" />
+        </uie:Toolbar>
+        <ui:VisualElement name="ConnectionStatusPanel" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; justify-content: center; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; display: none;">
+            <ui:Label text="Please start a Magic Leap App Simulator session to enable Device View" display-tooltip-when-elided="true" name="ConnectionStatusLabel" focusable="false" style="align-items: center; -unity-text-align: middle-center; white-space: normal; font-size: 16px; visibility: visible; overflow: hidden; display: flex;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

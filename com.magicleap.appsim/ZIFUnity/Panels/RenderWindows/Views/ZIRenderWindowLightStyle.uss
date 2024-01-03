@@ -1,0 +1,103 @@
+.renderToolbar {
+    background-color: rgb(219, 219, 219);
+    border-left-color: rgba(220, 220, 220, 0.57);
+    border-right-color: rgba(220, 220, 220, 0.57);
+    border-top-color: rgba(220, 220, 220, 0.57);
+    border-bottom-color: rgba(220, 220, 220, 0.57);
+}
+
+.renderToolbarButton {
+    background-color: rgb(189, 189, 189);
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+}
+
+.renderToolbarButton:hover {
+    background-color: rgb(165, 165, 165);
+}
+
+.addRoom {
+    -unity-background-image-tint-color: rgb(89, 89, 89);
+}
+
+.addModel {
+    -unity-background-image-tint-color: rgb(89, 89, 89);
+}
+
+.clearScene {
+    -unity-background-image-tint-color: rgb(89, 89, 89);
+}
+
+.moveManipulationModeIcon {
+    -unity-background-image-tint-color: rgb(89, 89, 89);
+}
+
+.noneManipulationModeIcon {
+    -unity-background-image-tint-color: rgb(89, 89, 89);
+}
+
+.rotateManipulateModeIcon {
+    -unity-background-image-tint-color: rgb(89, 89, 89);
+}
+
+.scaleManipulateModeIcon {
+    -unity-background-image-tint-color: rgb(89, 89, 89);
+}
+
+.anchorCenterModeIcon {
+    -unity-background-image-tint-color: rgb(89, 89, 89);
+}
+
+.anchorPivotModeIcon {
+    -unity-background-image-tint-color: rgb(89, 89, 89);
+}
+
+.localReferenceModeIcon {
+    -unity-background-image-tint-color: rgb(89, 89, 89);
+}
+
+.worldReferenceModeIcon {
+    -unity-background-image-tint-color: rgb(89, 89, 89);
+}
+
+.topDownCameraModeIcon {
+    -unity-background-image-tint-color: rgb(89, 89, 89);
+}
+
+.freeFlyCameraModeIcon {
+    -unity-background-image-tint-color: rgb(89, 89, 89);
+}
+
+.resetCameraIcon {
+    -unity-background-image-tint-color: rgb(89, 89, 89);
+}
+
+.gizmoIcon {
+    -unity-background-image-tint-color: rgb(89, 89, 89);
+}
+
+.resetHeadposeIcon {
+    -unity-background-image-tint-color: rgb(89, 89, 89);
+}
+
+.twoEyeModeIcon {
+    -unity-background-image-tint-color: rgb(89, 89, 89);
+}
+
+.menuItemButton {
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.dropdownMenu {
+    background-color: rgb(156, 156, 156);
+}
+
+.menuItemHovered {
+    background-color: rgb(166, 166, 166);
+}

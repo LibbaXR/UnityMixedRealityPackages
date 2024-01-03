@@ -1,0 +1,5 @@
+﻿.FireButton {
+    background-image: url('project://database/Packages/com.magicleap.appsim/Icons/GradientBackground.png?fileID=2800000&guid=524c94b83b7df8945ad6779c12cac619&type=3#GradientBackground');
+    flex-wrap: wrap;
+    justify-content: space-between;
+}

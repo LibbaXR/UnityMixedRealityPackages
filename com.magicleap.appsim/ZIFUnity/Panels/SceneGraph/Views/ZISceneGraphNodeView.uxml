@@ -1,0 +1,16 @@
+﻿<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/SceneGraph/Views/ZISceneGraphStyle.uss?fileID=7433441132597879392&amp;guid=b8560f395e87e054f98f0f575f10c788&amp;type=3#ZISceneGraphStyle" />
+    <ui:VisualElement name="ComplexObject" class="unity-foldout unity-foldout--depth-0" style="justify-content: flex-start; height: auto; flex-direction: column; margin-top: 1px; margin-bottom: 1px;">
+        <ui:VisualElement name="Label">
+            <ui:VisualElement style="flex-direction: row; justify-content: space-between; align-items: center;">
+                <ui:Toggle name="toggle" value="false" class="unity-foldout__toggle" />
+                <ui:VisualElement name="Header" style="flex-direction: row; align-items: center; width: 100px; flex-grow: 1; flex-shrink: 0;">
+                    <ui:VisualElement name="Icon-texture" class="sceneObject-room" style="flex-direction: row; width: 16px; height: 16px; justify-content: flex-start; align-items: flex-start; flex-wrap: nowrap; background-image: url(&apos;project://database/Packages/com.magicleap.appsim/Icons/Room.png?fileID=2800000&amp;guid=b33e7d53fb1eba44d9ff208031be2028&amp;type=3#Room&apos;); flex-grow: 0; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; -unity-background-scale-mode: scale-to-fit; flex-shrink: 0;" />
+                    <ui:TextField picking-mode="Ignore" value="filler text" text="filler text" name="Name-textField" style="display: none; margin-top: -1px; margin-bottom: -1px;" />
+                    <ui:Label text="Label" name="Name-label" style="justify-content: flex-start; align-items: center; margin-left: 5px; margin-right: 5px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="ChildrenContainer" class="unity-foldout__content" style="margin-left: 15px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; display: none;" />
+    </ui:VisualElement>
+</ui:UXML>

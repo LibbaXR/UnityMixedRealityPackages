@@ -1,0 +1,6 @@
+﻿<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" ml="UnityEditor.XR.MagicLeap" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/Permissions/Views/ZIPermissionState.uss?fileID=7433441132597879392&amp;guid=92bf51e40d9ab8d4b9ede0aa9518a41d&amp;type=3#ZIPermissionState" />
+    <ui:VisualElement class="background" style="flex-grow: 1; height: auto; width: auto; align-items: center; border-top-left-radius: 8px; border-bottom-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; min-width: auto; min-height: auto; flex-direction: row; margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px;">
+        <ui:EnumField type="UnityEngine.TextAlignment, UnityEngine.TextRenderingModule" value="Center" style="width: auto; height: auto; align-items: auto; justify-content: flex-start; margin-left: 8px; margin-right: 8px; margin-top: 8px; margin-bottom: 8px;" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,49 @@
+﻿<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" ml="UnityEditor.XR.MagicLeap" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/_Common/ZIGeneralStyleSheet.uss?fileID=7433441132597879392&amp;guid=1034af72768fe36458d869f9b10e5e52&amp;type=3#ZIGeneralStyleSheet" />
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/EyeGaze/Views/ZIEyeGazeStyle.uss?fileID=7433441132597879392&amp;guid=da89c427e066b614dbdcf0eb7d126a49&amp;type=3#ZIEyeGazeStyle" />
+        <ui:Foldout text="Behavior" name="GRBehavior-foldout" value="true" style="flex-shrink: 0; flex-grow: 0; flex-wrap: wrap; width: auto; align-items: stretch; height: auto;">
+            <ui:VisualElement name="HoldButtonRoot" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; align-self: flex-end; flex-wrap: wrap; width: auto; margin-left: 0; align-items: flex-end; justify-content: flex-end;">
+                <ui:Toggle label="Hold" name="GRHoldToggle" style="-unity-text-align: middle-right;" />
+﻿<!-- %BANNER_BEGIN%
+// %COPYRIGHT_BEGIN%
+//
+// Copyright (c) (2021-2023) Magic Leap, Inc. All Rights Reserved.
+// Use of this file is governed by the Software License Agreement, located here: https://www.magicleap.com/software-license-agreement-ml2
+// Terms and conditions applicable to third-party materials accompanying this distribution may also be found in the top-level NOTICE file appearing herein.
+// %COPYRIGHT_END%
+//
+// %COPYRIGHT_END%
+// %BANNER_END%-->
+            </ui:VisualElement>
+            <ui:VisualElement name="GazeStateRoot" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-items: flex-start; align-self: flex-start; width: 75%;">
+                <ui:VisualElement name="GazeStateRow1" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; align-self: flex-start;">
+                    <ui:Button name="GRStateButton1" text="Button" display-tooltip-when-elided="true" class="wink-button constrained-button" />
+                    <ui:Button name="GRStateButton2" text="Button" display-tooltip-when-elided="true" class="wink-button constrained-button"  />
+                    <ui:Button name="GRStateButton3" text="Button" display-tooltip-when-elided="true" class="wink-button constrained-button" />
+                </ui:VisualElement>
+                <ui:VisualElement name="GazeStateRow1" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; align-self: flex-start;">
+                    <ui:Button name="GRStateButton4" text="Button" display-tooltip-when-elided="true" class="wink-button constrained-button" />
+                    <ui:Button name="GRStateButton5" text="Button" display-tooltip-when-elided="true" class="wink-button constrained-button" />
+                    <ui:Button name="GRStateButton6" text="Button" display-tooltip-when-elided="true" class="wink-button constrained-button" />
+                </ui:VisualElement>
+                <ui:VisualElement name="GazeStateRow1" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; align-self: flex-start;">
+                    <ui:Button name="GRStateButton7" text="Button" display-tooltip-when-elided="true" class="wink-button constrained-button" />
+                    <ui:Button name="GRStateButton8" text="Button" display-tooltip-when-elided="true" class="wink-button constrained-button" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:Foldout> 
+        <ui:VisualElement class="spacer"/>
+        <ui:VisualElement name="GazePropertiesRoot" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+            <ui:Vector2Field label="Left Pupil Position" class="vector2-field" name="GRLeftPupilPosition"/>
+            <ui:Vector2Field label="Right Pupil Position" class="vector2-field" name="GRRightPupilPosition" />
+            <ui:FloatField label="Onset" value="0" name="GROnsetField" />
+            <ui:FloatField label="Duration" value="0" name="GRDurationField" />
+            <ui:VisualElement name="GazeMovementRoot">
+            <ui:Slider picking-mode="Ignore" name="GRVelocitySlider" label="Velocity" value="0" high-value="100" show-input-field="true" />
+            <ui:Slider picking-mode="Ignore" name="GRAmplitudeSlider" label="Amplitude" value="0" high-value="100" show-input-field="true" />
+            <ui:Slider picking-mode="Ignore" name="GRDirectionSlider" label="Direction" value="0" high-value="100" show-input-field="true" />
+            </ui:VisualElement>
+            <ui:EnumField label="Error" name="GRErrorEnumField" type="UnityEngine.TextAlignment, UnityEngine.TextRenderingModule" value="Center" />
+        </ui:VisualElement>
+    <ui:VisualElement class="spacer"/>
+</ui:UXML>

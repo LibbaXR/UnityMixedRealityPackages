@@ -1,0 +1,520 @@
+[
+  {
+    "Category": "Simulator/Controls",
+    "Settings": [
+      {
+        "SettingName": "InputControllerGizmoEnabled",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "InputController0Color",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "InputController0HeadposeFollow",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "InputController0SnapToHandpose",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "InputController0StartingPosition",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "InputController0StartingRotation",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      }
+    ]
+  },
+  {
+    "Category": "Simulator/Device View",
+    "Settings": [
+      {
+        "SettingName": "DeviceViewTwoEyeMode",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "CompositorMode",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "CompositorUserContentBrightnessBias",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "CompositorUserContentGammaCorrection",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "DeviceViewGradientLow",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "DeviceViewGradientHigh",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "GraphicsResolutionScale",
+        "DeviceName": "SimulatorGraphicsViewSparseDevice",
+        "Type": "FloatSpecific"
+      },
+      {
+        "SettingName": "GraphicsResolutionScale",
+        "DeviceName": "MLxGraphicsViewSparseDevice",
+        "Type": "FloatSpecific"
+      },
+      {
+        "SettingName": "GraphicsCodecType",
+        "DeviceName": "MLxGraphicsViewSparseDevice"
+      },
+      {
+        "SettingName": "GraphicsRenderFrame",
+        "DeviceName": "MLxGraphicsViewSparseDevice"
+      },
+      {
+        "SettingName": "ContractFrameTimeoutMs",
+        "DeviceName": "SimulatorGraphicsViewSparseDevice"
+      },
+      {
+        "SettingName": "ContractFrameTimeoutMs",
+        "DeviceName": "MLxGraphicsViewSparseDevice"
+      }
+    ]
+  },
+  {
+    "Category": "Simulator/Eye Tracking",
+    "Settings": [
+      {
+        "SettingName": "EyeFixationEyeCenterOffset",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "EyeFixationGizmoIPD",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "EyeFixationHeadposeFOV",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "EyeFixationGizmoHeadposeFollow",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "EyeFixationGizmoRenderInDeviceView",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "EyeFixationGizmoRenderGaze",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "EyeFixationGizmoGazeSize",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "EyeFixationGizmoSize",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "EyeFixationGizmoDiffuseColor",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "EyeFixationStartingPosition",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "EyeFixationStartingRotation",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "EyeFixationStartingPupilDiameterMM",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      }
+    ]
+  },
+  {
+    "Category": "Simulation/Hands",
+    "Settings": [
+      {
+        "SettingName": "HandGestureGizmoEnabled",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "HandGestureClipToMeshingFOV",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "HandGestureGizmoHoldingDistance",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "LeftHandGestureHeadposeFollow",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "LeftHandGestureStartingPosition",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "LeftHandGestureStartingRotation",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "LeftHandGestureGizmoDiffuseColor",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "RightHandGestureHeadposeFollow",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "RightHandGestureStartingPosition",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "RightHandGestureStartingRotation",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "RightHandGestureGizmoDiffuseColor",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      }
+    ]
+  },
+  {
+    "Category": "Simulator/Head Pose",
+    "Settings": [
+      {
+        "SettingName": "HeadposeGizmoEnabled",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "HeadposeStartingPosition",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "HeadposeStartingRotation",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      }
+    ]
+  },
+  {
+    "Category": "Simulator/Image Targets",
+    "Settings": [
+      {
+        "SettingName": "ImageTargetGizmoEnabled",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "ImageTargetHeadposeFollow",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "ImageTargetStartingPosition",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "ImageTargetStartingRotation",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "ImageTargetGizmoNoImageSize",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "ImageTargetGizmoNoImageTrackedColor",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "ImageTargetGizmoNoImageUnreliableColor",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "ImageTargetGizmoNoImageUntrackedColor",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "ImageTargetGizmoTrackedColor",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "ImageTargetGizmoUnreliableColor",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "ImageTargetGizmoUntrackedColor",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      }
+    ]
+  },
+  {
+    "Category": "Simulator/Observed Geometry",
+    "Settings": [
+      {
+        "SettingName": "ObservedGeometryCacheCaptureEnabled",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "ObservedGeometryCacheCaptureMode",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "ObservedGeometryCacheEmptyBlockColor",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "ObservedGeometryCacheCleanBlockColor",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "ObservedGeometryCacheDirtyBlockColor",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "ObservedGeometryShowCacheBlocks",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "ObservedGeometryShowEmptyCacheBlocks",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "ObservedGeometryShowUnscannedCacheBlocks",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "ObservedGeometryShowCacheData",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "ObservedGeometryCacheDataRenderColor",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "ObservedGeometryCacheDataRenderOnTop",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      }
+    ]
+  },
+  {
+    "Category": "Simulator/Planes",
+    "Settings": [
+      {
+        "SettingName": "CoPlanarRenderMode",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "CoPlanarShowFeatures",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "CoPlanarRenderUpdateIntervalMs",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "CoPlanarRenderOrientToGravity",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "CoPlanarRenderWireframe",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "CoPlanarRenderColor",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "CoPlanarRenderRandomizeColor",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "CoPlanarSampleRotationStepSize",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "CoPlanarSampleStepSize",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      }
+    ]
+  },
+  {
+    "Category": "Simulator/Scene View",
+    "Settings": [
+      {
+        "SettingName": "DeviceViewCameraShowViewFrustum",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "ViewGridColor",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "ViewGridHeight",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "ViewGridExpansion",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "SceneViewGradientLow",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "SceneViewGradientHigh",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "CompassGizmoScreenSize",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "SplashModelPosition",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "SplashModelRotation",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "SplashModelScale",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "MoveSnapSize",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "RotateSnapAngle",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "ScaleSnapSize",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "SceneViewCameraPosition",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "SceneViewCameraRotation",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      }
+    ]
+  },
+  {
+    "Category": "Peripherals/Keyboard-Mouse",
+    "Settings": [
+      {
+        "SettingName": "HeadposeAbsoluteMovement",
+        "DeviceName": "PeripheralKeyMouseSparseDevice"
+      },
+      {
+        "SettingName": "SceneViewCameraAbsoluteMovement",
+        "DeviceName": "PeripheralKeyMouseSparseDevice"
+      },
+      {
+        "SettingName": "InputControllerAbsoluteMovement",
+        "DeviceName": "PeripheralKeyMouseSparseDevice"
+      },
+      {
+        "SettingName": "KeySensitivity",
+        "DeviceName": "PeripheralKeyMouseSparseDevice"
+      },
+      {
+        "SettingName": "MouseSensitivity-DeltaX",
+        "DeviceName": "PeripheralKeyMouseSparseDevice"
+      },
+      {
+        "SettingName": "MouseSensitivity-DeltaY",
+        "DeviceName": "PeripheralKeyMouseSparseDevice"
+      },
+      {
+        "SettingName": "MouseSensitivity-ScrollWheelX",
+        "DeviceName": "PeripheralKeyMouseSparseDevice"
+      },
+      {
+        "SettingName": "MouseSensitivity-ScrollWheelY",
+        "DeviceName": "PeripheralKeyMouseSparseDevice"
+      },
+      {
+        "SettingName": "DefaultSensitivity",
+        "DeviceName": "PeripheralKeyMouseSparseDevice"
+      },
+      {
+        "SettingName": "DefaultDeadzone",
+        "DeviceName": "PeripheralKeyMouseSparseDevice"
+      },
+      {
+        "SettingName": "Global-Axis-Sensitivity",
+        "DeviceName": "PeripheralKeyMouseSparseDevice"
+      },
+      {
+        "SettingName": "MaxTranslation",
+        "DeviceName": "PeripheralKeyMouseSparseDevice"
+      },
+      {
+        "SettingName": "MaxRotation",
+        "DeviceName": "PeripheralKeyMouseSparseDevice"
+      },
+      {
+        "SettingName": "MovementAccelerateMultiplier",
+        "DeviceName": "PeripheralKeyMouseSparseDevice"
+      },
+      {
+        "SettingName": "MovementDampener",
+        "DeviceName": "PeripheralKeyMouseSparseDevice"
+      },
+      {
+        "SettingName": "NonCameraSensitivityMultiplier",
+        "DeviceName": "PeripheralKeyMouseSparseDevice"
+      }
+    ]
+  },
+  {
+    "Category": "ML Device",
+    "Settings": [
+      {
+        "SettingName": "EyeActivenessReportDelay",
+        "DeviceName": "MLxEyeTrackingSparseDevice"
+      },
+      {
+        "SettingName": "HandActivenessReportDelay",
+        "DeviceName": "MLxHandTrackingSparseDevice"
+      }
+    ]
+  },
+  {
+  "Category": "ML Device/Device View",
+  "Settings": [
+    {
+      "SettingName": "GraphicsResolutionScale",
+      "DeviceName": "MLxGraphicsViewSparseDevice"
+    },
+    {
+      "SettingName": "GraphicsCodecType",
+      "DeviceName": "MLxGraphicsViewSparseDevice"
+    },
+    {
+      "SettingName": "GraphicsRenderFrame",
+      "DeviceName": "MLxGraphicsViewSparseDevice"
+    },
+    {
+      "SettingName": "EnableReprojection",
+      "DeviceName": "MLxGraphicsViewSparseDevice"
+    },
+    {
+      "SettingName": "ReprojectionDepth",
+      "DeviceName": "MLxGraphicsViewSparseDevice"
+    },
+    {
+      "SettingName": "ContractFrameTimeoutMs",
+      "DeviceName": "MLxGraphicsViewSparseDevice"
+    }
+  ]
+}
+]

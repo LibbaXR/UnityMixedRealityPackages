@@ -1,0 +1,10 @@
+﻿<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" ml="UnityEditor.XR.MagicLeap" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Editor/PermissionRequestPrompt.uss?fileID=7433441132597879392&amp;guid=60d44df0f843d3e40aaf693d9295b1f7&amp;type=3#PermissionRequestPrompt" />
+    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); margin-left: 8px; margin-right: 8px; margin-top: 8px; margin-bottom: 8px; align-items: center; justify-content: center;">
+        <ui:Label tabindex="-1" text="Allow some permission?" display-tooltip-when-elided="true" name="label" style="-unity-text-align: upper-center; white-space: normal;" />
+        <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; justify-content: center; margin-left: 6px; margin-right: 6px; margin-top: 6px; margin-bottom: 6px;">
+            <ui:Button tabindex="-1" text="Deny" display-tooltip-when-elided="true" name="cancel-button" style="min-width: auto; width: 90px; height: 25px; border-top-left-radius: 14px; border-bottom-left-radius: 14px; border-top-right-radius: 14px; border-bottom-right-radius: 14px;" />
+            <ui:Button tabindex="-1" text="Allow" display-tooltip-when-elided="true" name="yes-button" class="FireButton" style="width: 90px; height: 25px; border-top-left-radius: 14px; border-bottom-left-radius: 14px; border-top-right-radius: 14px; border-bottom-right-radius: 14px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

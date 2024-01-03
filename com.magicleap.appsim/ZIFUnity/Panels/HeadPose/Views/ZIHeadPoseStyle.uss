@@ -1,0 +1,91 @@
+﻿.unity-base-field__label {
+    width: auto;
+}
+
+.unity-toggle--no-text {
+}
+
+.unity-toolbar-toggle {
+    width: auto;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.unity-foldout .unity-base-field__label {
+    min-width: auto;
+}
+
+.unity-base-slider__input {
+    max-width: 200px;
+}
+
+.unity-enum-field__input {
+    max-width: 200px;
+}
+
+.unity-composite-field > .unity-composite-field__input {
+    justify-content: flex-end;
+}
+
+.unity-composite-field__field {
+    max-width: 100px;
+}
+
+#Position-field > .unity-label {
+    margin-right: 30px;
+}
+
+#Orientation-field > .unity-label {
+    margin-right: 13px;
+}
+
+#Confidence-slider > .unity-label {
+    margin-right: 13px;
+}
+
+#Error-enum > .unity-label {
+    margin-right: 45px;
+}
+
+#Mode-enum > .unity-label {
+    margin-right: 45px;
+}
+
+.unity-foldout--depth-0 > .unity-foldout__toggle {
+    border-radius: 3px;
+}
+
+.unity-foldout--depth-1 > .unity-foldout__content {
+    margin-left: 0;
+}
+
+#AlignCamera-button {
+    border-width: 1px;
+    border-radius: 9px;
+}
+
+.unity-float-field {
+    width: 0;
+}
+
+.unity-toolbar-toggle:hover {
+    background-image: none;
+}
+
+.unity-toolbar-toggle:selected {
+    background-image: url('project://database/Packages/com.magicleap.appsim/Icons/GradientBackground.png?fileID=2800000&guid=524c94b83b7df8945ad6779c12cac619&type=3#GradientBackground');
+}

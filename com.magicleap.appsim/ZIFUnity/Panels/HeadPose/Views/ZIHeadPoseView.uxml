@@ -1,0 +1,32 @@
+﻿<!-- %BANNER_BEGIN%
+// %COPYRIGHT_BEGIN%
+//
+// Copyright (c) (2021-2023) Magic Leap, Inc. All Rights Reserved.
+// Use of this file is governed by the Software License Agreement, located here: https://www.magicleap.com/software-license-agreement-ml2
+// Terms and conditions applicable to third-party materials accompanying this distribution may also be found in the top-level NOTICE file appearing herein.
+// %COPYRIGHT_END%
+//
+// %COPYRIGHT_END%
+// %BANNER_END%-->
+
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/_Common/ZIGeneralStyleSheet.uss?fileID=7433441132597879392&amp;guid=1034af72768fe36458d869f9b10e5e52&amp;type=3#ZIGeneralStyleSheet" />
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/HeadPose/Views/ZIHeadPoseStyle.uxml.uss?fileID=7433441132597879392&amp;guid=332515baf473a7849abb182f42a3e043&amp;type=3#ZIHeadPoseStyle.uxml" />
+    <ui:Template src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/_Common/AlignableTransform/AlignableTransform.uxml" name="TransformTemplate"/>
+    <ui:Instance template="TransformTemplate" name="TransformFoldout">
+        <ui:AttributeOverrides element-name="ResetButton" tooltip="Reset Head Pose"/>
+    </ui:Instance>
+    <ui:VisualElement style="height: 10px;" />
+    <ui:Foldout text="State" name="State-foldout">
+        <ui:Slider picking-mode="Ignore" label="Confidence" value="0.5" high-value="1" show-input-field="true" name="Confidence-slider" style="justify-content: space-between; margin-top: 2px; margin-bottom: 2px;" />
+        <uie:EnumField label="Error" value="Center" name="Error-enum" style="-unity-text-align: upper-left; justify-content: space-between; align-items: stretch; margin-top: 2px; margin-bottom: 2px;" />
+        <uie:EnumField label="Mode" value="Center" name="Mode-enum" style="justify-content: space-between; margin-top: 2px; margin-bottom: 2px;" />
+        <ui:Label text="Map Events" display-tooltip-when-elided="true" style="margin-left: 3px; margin-right: 3px; margin-top: 2px; margin-bottom: 2px;" />
+        <ui:VisualElement style="flex-direction: row; flex-wrap: wrap; margin-left: 3px; margin-right: 3px; margin-top: 2px; margin-bottom: 2px;">
+            <uie:ToolbarToggle label="Lost" value="false" focusable="false" name="Lost-button" style="flex-wrap: nowrap; align-items: center; left: auto; opacity: 1;" />
+            <uie:ToolbarToggle label="Recovered" value="false" focusable="false" name="Recovered-button" style="flex-wrap: nowrap; align-items: center; left: auto; opacity: 1;" />
+            <uie:ToolbarToggle label="Recovery Failed" value="false" focusable="false" name="RecoveryFailed-button" style="flex-wrap: nowrap; align-items: center; left: auto; opacity: 1;" />
+            <uie:ToolbarToggle label="New Session" value="false" focusable="false" name="NewSession-button" style="flex-wrap: nowrap; align-items: center; left: auto; opacity: 1;" />
+        </ui:VisualElement>
+    </ui:Foldout>
+</ui:UXML>

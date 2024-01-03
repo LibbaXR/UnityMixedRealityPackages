@@ -1,0 +1,27 @@
+.actionButton {
+    background-color: rgba(255, 255, 255, 0);
+    border-left-color: rgba(255, 255, 255, 0.3);
+    border-right-color: rgba(255, 255, 255, 0.3);
+    border-top-color: rgba(255, 255, 255, 0.3);
+    border-bottom-color: rgba(255, 255, 255, 0.3);
+    color: rgb(255, 255, 255);
+}
+
+.actionButtonHovered {
+    background-color: rgb(120, 120, 120);
+}
+
+.trigger-button {
+    border-left-color: rgb(123, 123, 123);
+    border-right-color: rgb(123, 123, 123);
+    border-top-color: rgb(123, 123, 123);
+    border-bottom-color: rgb(123, 123, 123);
+}
+
+.trigger-button:hover {
+    background-color: rgb(128, 128, 128);
+}
+
+.action-button-label{
+    text-color: rgb(89, 89, 89);
+}

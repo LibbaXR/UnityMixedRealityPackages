@@ -1,0 +1,24 @@
+.unity-toolbar-toggle {
+    border-left-color: rgba(144, 144, 144, 255);
+    border-right-color: rgba(144, 144, 144, 255);
+    border-top-color: rgba(144, 144, 144, 255);
+    border-bottom-color: rgba(144, 144, 144, 255);
+}
+
+.unity-foldout--depth-0 > .unity-foldout__toggle {
+    background-color: rgb(80, 80, 80);
+    border-color: rgb(42, 42, 42);
+}
+
+#AlignCamera-button {
+    background-color: rgb(64, 64, 64);
+    border-color: rgb(133, 133, 133);
+}
+
+.unity-toolbar-toggle:hover {
+    background-color: rgba(111, 111, 111, 0.84);
+}
+
+.unity-toolbar-toggle:selected {
+    background-color: rgba(149, 149, 149, 0.55);
+}

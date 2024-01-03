@@ -1,0 +1,26 @@
+.settings-label {
+    font-size: 20px;
+    -unity-font-style: bold;
+}
+
+.reset-button {
+    position: absolute;
+    left: auto;
+    top: 3px;
+    opacity: 1;
+    right: 0;
+}
+
+.extended-width > .unity-label {
+    min-width: 235px;
+}
+
+.extended-width {
+}
+
+.dropdown-text-align .unity-base-popup-field__text {
+    -unity-text-align: upper-left;
+}
+
+.dropdown-text-align {
+}

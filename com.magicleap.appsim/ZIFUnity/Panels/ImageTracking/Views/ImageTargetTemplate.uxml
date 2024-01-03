@@ -1,0 +1,27 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/ImageTracking/Views/ImageTargetTemplateStyle.uss?fileID=7433441132597879392&amp;guid=4f01a9f45843f7741b316656ca57d886&amp;type=3#ImageTargetTemplateStyle" />
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/_Common/ZIGeneralStyleSheet.uss?fileID=7433441132597879392&amp;guid=1034af72768fe36458d869f9b10e5e52&amp;type=3#ZIGeneralStyleSheet" />
+    <ui:VisualElement name="ImageTarget" class="unity-foldout unity-foldout--depth-0" style="justify-content: flex-start; height: auto; flex-direction: column; margin-top: 10px; margin-bottom: 0; flex-shrink: 0;">
+        <ui:VisualElement name="Row" style="flex-direction: row; justify-content: space-between; align-items: center; flex-shrink: 0;">
+            <ui:VisualElement style="flex-direction: row; align-items: center; flex-shrink: 0;">
+                <ui:Toggle name="toggle" class="unity-foldout__toggle" />
+                <ui:VisualElement name="IconBackground" style="flex-direction: row; width: 32px; height: 30px; justify-content: center; align-items: center; flex-wrap: nowrap; background-image: none; flex-grow: 0; margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; flex-shrink: 0; background-color: rgb(0, 0, 0);">
+                    <ui:VisualElement name="Icon" style="flex-direction: row; width: 32px; height: 32px; justify-content: center; align-items: center; flex-wrap: nowrap; background-image: none; flex-grow: 0; flex-shrink: 0; max-width: 100%; max-height: 100%; align-self: center;" />
+                </ui:VisualElement>
+                <ui:Label text="Label" name="Name" style="justify-content: flex-start; align-items: center; margin-left: 5px; margin-right: 5px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="VisualElement" style="flex-direction: row; flex-shrink: 0;">
+                <ui:Button text="&#10;" name="Clone-button" tooltip="Clone" class="clone-button" style="background-image: url(&apos;project://database/Packages/com.magicleap.appsim/Icons/copy.png?fileID=2800000&amp;guid=1061cfbd62181ff46b2b5a67a991a795&amp;type=3#copy&apos;); width: 16px; height: 16px; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgba(228, 228, 228, 0);" />
+                <ui:Button text="&#10;" name="Delete-button" tooltip="Delete" class="delete-button" style="background-image: url(&apos;project://database/Packages/com.magicleap.appsim/Icons/Trash.png?fileID=2800000&amp;guid=73df7fd43bb386144896499868ee1c8c&amp;type=3#Trash&apos;); width: 16px; height: 16px; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgba(228, 228, 228, 0);" />
+                <ui:VisualElement name="TrackingState" tooltip="Tracked" style="background-image: url(&apos;project://database/Packages/com.magicleap.appsim/Icons/Screenshot.png?fileID=2800000&amp;guid=0dae9877b49bd9c4f8418ca7ca854f10&amp;type=3#Screenshot&apos;); width: 16px; height: 16px; margin-left: 3px; margin-right: 3px; margin-top: 1px; margin-bottom: 1px; padding-left: 6px; padding-right: 6px; padding-top: 1px; padding-bottom: 1px; flex-shrink: 0;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="unity-content" class="unity-foldout__content" style="margin-left: 15px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; flex-shrink: 0;">
+            <uie:Vector3Field label="Position" name="Position" style="margin-top: 2px; margin-bottom: 2px; margin-left: 2px; margin-right: 2px;" />
+            <uie:Vector3Field label="Orientation" name="Orientation" style="margin-top: 2px; margin-bottom: 2px; margin-left: 2px; margin-right: 2px;" />
+            <ui:DropdownField label="Type" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="Type" style="justify-content: flex-start;" />
+            <ui:VisualElement name="Subview" style="flex-shrink: 0; flex-grow: 1;" />
+        </ui:VisualElement>
+        <ui:VisualElement style="background-color: rgb(32, 32, 32); background-image: none; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; -unity-slice-left: 0; -unity-slice-top: 0; -unity-slice-right: 0; -unity-slice-bottom: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; margin-top: 2px; margin-left: 2px; margin-right: 2px; margin-bottom: 2px; flex-shrink: 0;" />
+    </ui:VisualElement>
+</ui:UXML>

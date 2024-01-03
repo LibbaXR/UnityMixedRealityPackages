@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/ImageTracking/Views/ImageTargetTemplateStyle.uss?fileID=7433441132597879392&amp;guid=4f01a9f45843f7741b316656ca57d886&amp;type=3#ImageTargetTemplateStyle" />
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/_Common/ZIGeneralStyleSheet.uss?fileID=7433441132597879392&amp;guid=1034af72768fe36458d869f9b10e5e52&amp;type=3#ZIGeneralStyleSheet" />
+    <ui:VisualElement name="ImageSubview" class="unity-foldout unity-foldout--depth-0" style="justify-content: flex-start; height: auto; flex-direction: column; margin-top: 10px; margin-bottom: 0;">
+        <uie:EnumField label="Assigned Image" name="Texture" style="margin-left: 2px; margin-right: 2px; margin-top: 2px; margin-bottom: 2px;" />
+        <ui:VisualElement name="PhysicalSize" style="flex-direction: row; justify-content: space-between; margin-left: 2px; margin-right: 2px; margin-top: 2px; margin-bottom: 2px;">
+            <ui:Label text="Physical Size" />
+            <ui:VisualElement style="margin-left: 0; flex-direction: row; align-items: auto; justify-content: center; width: 180px;">
+                <ui:Label text="W: 47" name="W" style="margin-left: 10px; margin-right: 10px;" />
+                <ui:Label text="H: 102" name="H" style="margin-left: 10px; margin-right: 10px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

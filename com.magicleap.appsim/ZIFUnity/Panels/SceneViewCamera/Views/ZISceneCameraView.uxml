@@ -1,0 +1,19 @@
+﻿<!-- %BANNER_BEGIN%
+// %COPYRIGHT_BEGIN%
+//
+// Copyright (c) (2021-2023) Magic Leap, Inc. All Rights Reserved.
+// Use of this file is governed by the Software License Agreement, located here: https://www.magicleap.com/software-license-agreement-ml2
+// Terms and conditions applicable to third-party materials accompanying this distribution may also be found in the top-level NOTICE file appearing herein.
+// %COPYRIGHT_END%
+//
+// %COPYRIGHT_END%
+// %BANNER_END%-->
+
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/_Common/ZIGeneralStyleSheet.uss?fileID=7433441132597879392&amp;guid=1034af72768fe36458d869f9b10e5e52&amp;type=3#ZIGeneralStyleSheet" />
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/HeadPose/Views/ZIHeadPoseStyle.uxml.uss?fileID=7433441132597879392&amp;guid=332515baf473a7849abb182f42a3e043&amp;type=3#ZIHeadPoseStyle.uxml" />
+    <ui:Template src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/_Common/AlignableTransform/AlignableTransform.uxml" name="TransformTemplate"/>
+    <ui:Instance template="TransformTemplate" name="TransformFoldout">
+        <ui:AttributeOverrides element-name="ResetButton" tooltip="Reset Scene View Camera"/>
+    </ui:Instance>
+</ui:UXML>

@@ -1,0 +1,58 @@
+﻿<!-- %BANNER_BEGIN%
+// %COPYRIGHT_BEGIN%
+//
+// Copyright (c) (2021-2023) Magic Leap, Inc. All Rights Reserved.
+// Use of this file is governed by the Software License Agreement, located here: https://www.magicleap.com/software-license-agreement-ml2
+// Terms and conditions applicable to third-party materials accompanying this distribution may also be found in the top-level NOTICE file appearing herein.
+// %COPYRIGHT_END%
+//
+// %COPYRIGHT_END%
+// %BANNER_END%-->
+
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" ml="UnityEditor.XR.MagicLeap" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/_Common/ZIGeneralStyleSheet.uss?fileID=7433441132597879392&amp;guid=1034af72768fe36458d869f9b10e5e52&amp;type=3#ZIGeneralStyleSheet" />
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/EyeGaze/Views/ZIEyeGazeStyle.uss?fileID=7433441132597879392&amp;guid=da89c427e066b614dbdcf0eb7d126a49&amp;type=3#ZIEyeGazeStyle" />
+    <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" mode="VerticalAndHorizontal">
+        <ui:Foldout text="Position" name="Position-foldout" value="true" style="flex-shrink: 0;">
+            <ui:Template src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/_Common/ResetButton/ResetButton.uxml" name="ResetTransformTemplate"/>
+            <ui:Instance template="ResetTransformTemplate" name="ResetTransform">
+                <ui:AttributeOverrides element-name="ResetButton" tooltip="Reset Position"/>
+            </ui:Instance>
+            <ui:VisualElement name="FollowHread-content" style="justify-content: flex-start; align-items: flex-end; flex-shrink: 1;">
+                <ui:Toggle label="Follow Head Pose" name="FollowHead-toggle" tooltip="Keeps eye fixation point relative to headpose" style="align-items: stretch;" />
+            </ui:VisualElement>
+            <uie:Vector3Field label="Fixation" name="Fixation-field" />
+            <uie:Vector3Field label="Left Eye" name="LeftEye-field" class="vector3-field__readonly" style="visibility: visible; display: flex;" />
+            <uie:Vector3Field label="Right Eye" name="RightEye-field" class="vector3-field__readonly" />
+            <ui:VisualElement name="EyeBlink-panel" style="flex-direction: row; justify-content: space-between; align-items: center; margin-left: 3px; margin-right: 3px;">
+                <ui:Label text="Eye Blink" style="flex-grow: 1; min-width: 95px; max-width: 95px;" />
+                <ui:VisualElement name="LeftWink-button" class="wink-button">
+                    <ui:Label text="L Wink" name="LeftWink-label" />
+                </ui:VisualElement>
+                <ui:Toggle name="Link-toggle" value="true" style="background-image: none; -unity-background-scale-mode: scale-and-crop; margin-top: 3px;" />
+                <ui:VisualElement name="RightWink-button" class="wink-button">
+                    <ui:Label text="R Wink" name="RightWink-label" />
+                </ui:VisualElement>
+                <ui:VisualElement style="flex-shrink: 0; flex-grow: 1;" />
+                <ui:Toggle label="Hold" name="EyeBlink-toggle" />
+            </ui:VisualElement>
+            <uie:IntegerField label="Pupil Distance" value="42" name="PupilDistance-field" tooltip="Sets the Inter Pupillary Distance in milimeters" />
+        </ui:Foldout>
+        <ui:Foldout text="Confidence" name="Confidence-foldout">
+            <ui:Slider picking-mode="Ignore" label="Fixation" value="1" high-value="1" name="Fixation-slider" direction="Horizontal" show-input-field="true" page-size="0" focusable="true" style="justify-content: flex-start; align-items: stretch;" />
+            <ui:Slider picking-mode="Ignore" label="Left Eye" value="1" high-value="1" name="LeftEye-slider" direction="Horizontal" show-input-field="true" />
+            <ui:Slider picking-mode="Ignore" label="Right Eye" value="1" high-value="1" name="RightEye-slider" direction="Horizontal" show-input-field="true" />
+        </ui:Foldout>
+        <ui:Foldout text="State" name="State-foldout" value="true">
+            <uie:EnumField label="Error" value="None" name="Error-enum" usage-hints="None" />
+            <uie:EnumField label="Calibration Status" value="None" name="Calibration-enum" style="white-space: normal;" />
+            <ui:Slider picking-mode="Ignore" label="Left Pupil Diameter" value="42" high-value="10" name="LeftPupilSize-slider" direction="Horizontal" show-input-field="true" tooltip="Left Pupil Diameter (milimeters)" low-value="1" style="height: 19px;" />
+            <ui:Slider picking-mode="Ignore" label="Right Pupil Diameter" value="42" high-value="10" name="RightPupilSize-slider" direction="Horizontal" show-input-field="true" tooltip="Right Pupil Diameter (milimeters)" low-value="1" />
+        </ui:Foldout>
+    <ui:Foldout text="Gaze Recognition" name="GazeRecognitionFoldout">
+        <ui:Template src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/EyeGaze/Views/ZIGazeRecognitionView.uxml" name="GazeRecognitionTemplate"/>
+        <ui:Instance template="GazeRecognitionTemplate">
+        </ui:Instance>
+    </ui:Foldout>
+    </ui:ScrollView>
+</ui:UXML>

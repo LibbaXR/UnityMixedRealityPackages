@@ -1,0 +1,19 @@
+﻿<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/Permissions/Views/ZIPermissionsView.uss?fileID=7433441132597879392&amp;guid=550bef011e6f80648933315040c8322d&amp;type=3#ZIPermissionsView" />
+    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); margin-left: 8px; margin-right: 8px; margin-top: 8px; margin-bottom: 8px;">
+        <ui:VisualElement style="flex-direction: row; margin-bottom: 8px; flex-shrink: 0;">
+            <ui:DropdownField label="Manifest Path" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="path-dropdown" style="flex-shrink: 1; flex-grow: 1;" />
+            <ui:Button text="..." name="manifest-button" style="flex-grow: 1; max-width: 21px; flex-shrink: 0; background-image: none;" />
+        </ui:VisualElement>
+        <ui:MultiColumnListView fixed-item-height="30" style="margin-top: 0; margin-bottom: 0; margin-left: 0; margin-right: 0;">
+            <ui:Columns>
+                <ui:Column name="PERMISSION" title="PERMISSION" width="200" />
+                <ui:Column name="LEVEL" title="LEVEL" width="150" />
+                <ui:Column name="STATE" title="STATE" width="150" />
+            </ui:Columns>
+        </ui:MultiColumnListView>
+    </ui:VisualElement>
+    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; left: 100%; top: 0; overflow: visible;">
+        <ui:Button tabindex="-1" text="..." display-tooltip-when-elided="true" name="options-button" style="transform-origin: right top; left: -35px; max-width: 21px; top: 35px;" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,22 @@
+<!-- %BANNER_BEGIN%
+// %COPYRIGHT_BEGIN%
+//
+// Copyright (c) (2021-2023) Magic Leap, Inc. All Rights Reserved.
+// Use of this file is governed by the Software License Agreement, located here: https://www.magicleap.com/software-license-agreement-ml2
+// Terms and conditions applicable to third-party materials accompanying this distribution may also be found in the top-level NOTICE file appearing herein.
+// %COPYRIGHT_END%
+//
+// %COPYRIGHT_END%
+// %BANNER_END%-->
+
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:Template name="ResetTransformTemplate" src="project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/_Common/ResetButton/ResetButton.uxml?fileID=9197481963319205126&amp;guid=df3876f1aa9b47a44b07a2a5570358bf&amp;type=3#ResetButton" />
+    <ui:Foldout text="Transform" name="Transform-foldout">
+        <ui:Instance template="ResetTransformTemplate" name="ResetTransform" />
+        <uie:Vector3Field label="Position" name="Position-field" focusable="true" style="margin-top: 2px; margin-bottom: 2px;" />
+        <uie:Vector3Field label="Orientation" name="Orientation-field" />
+        <ui:VisualElement style="align-items: flex-end; margin-left: 3px; margin-right: 3px; margin-top: 2px; margin-bottom: 2px;">
+            <ui:Button text="Align Camera" name="AlignCamera-button" />
+        </ui:VisualElement>
+    </ui:Foldout>
+</ui:UXML>

@@ -1,0 +1,103 @@
+[
+  {
+    "Category": "General",
+    "Settings": [
+      {
+        "SettingName": "GlobalAmbientColor",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "CompositorRoomDarknessBias",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "RedrawOnDemand",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      }
+    ]
+  },
+  {
+    "Category": "Scene View",
+    "Settings": [
+      {
+        "SettingName": "ViewGridColor",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "ViewGridExpansion",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "SceneViewGradientLow",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "SceneViewGradientHigh",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      }
+    ]
+  },
+  {
+    "Category": "Device View",
+    "Settings": [
+      {
+        "SettingName": "DeviceViewTwoEyeMode",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "CompositorMode",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "CompositorUserContentBrightnessBias",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "CompositorUserContentGammaCorrection",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "GraphicsResolutionScale",
+        "DeviceName": "SimulatorGraphicsViewSparseDevice",
+        "Type": "FloatSpecific"
+      },
+      {
+        "SettingName": "GraphicsResolutionScale",
+        "DeviceName": "MLxGraphicsViewSparseDevice",
+        "Type": "FloatSpecific"
+      },
+      {
+        "SettingName": "GraphicsCodecType",
+        "DeviceName": "MLxGraphicsViewSparseDevice"
+      },
+      {
+        "SettingName": "GraphicsRenderFrame",
+        "DeviceName": "MLxGraphicsViewSparseDevice"
+      },
+      {
+        "SettingName": "EnableReprojection",
+        "DeviceName": "MLxGraphicsViewSparseDevice"
+      },
+      {
+        "SettingName": "ReprojectionDepth",
+        "DeviceName": "MLxGraphicsViewSparseDevice"
+      },
+      {
+        "SettingName": "ContractFrameTimeoutMs",
+        "DeviceName": "SimulatorGraphicsViewSparseDevice"
+      },
+      {
+        "SettingName": "ContractFrameTimeoutMs",
+        "DeviceName": "MLxGraphicsViewSparseDevice"
+      },
+      {
+        "SettingName": "DeviceViewGradientLow",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      },
+      {
+        "SettingName": "DeviceViewGradientHigh",
+        "DeviceName": "SimulatorManagerSparseDevice"
+      }
+    ]
+  }
+]

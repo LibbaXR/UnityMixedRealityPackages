@@ -1,0 +1,14 @@
+<!-- %BANNER_BEGIN%
+// %COPYRIGHT_BEGIN%
+//
+// Copyright (c) (2021-2023) Magic Leap, Inc. All Rights Reserved.
+// Use of this file is governed by the Software License Agreement, located here: https://www.magicleap.com/software-license-agreement-ml2
+// Terms and conditions applicable to third-party materials accompanying this distribution may also be found in the top-level NOTICE file appearing herein.
+// %COPYRIGHT_END%
+//
+// %COPYRIGHT_END%
+// %BANNER_END%-->
+
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Button display-tooltip-when-elided="true" name="ResetButton" tooltip="Reset Transform" style="width: 16px; background-image: url(&apos;project://database/Packages/com.magicleap.appsim/ZIFUnity/Panels/_Common/rotate.png?fileID=21300000&amp;guid=49ab1ba5bdcdffc4fbc0361be7a92e38&amp;type=3#rotate&apos;); height: 16px; align-items: flex-end; align-self: flex-end; margin-right: 2px; display: flex; -unity-background-image-tint-color: rgb(255, 255, 255); background-color: rgb(56, 56, 56); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;" />
+</ui:UXML>
