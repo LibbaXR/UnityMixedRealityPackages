@@ -9,6 +9,7 @@
 // %BANNER_END%
 
 using ml.zi;
+using System;
 using UnityEditor;
 using UnityEditor.XR.MagicLeap;
 using UnityEngine;
@@ -128,9 +129,19 @@ namespace MagicLeap.ZI
             Presenter.SetErrorMessage(isInvalidPath, isInvalidPath ? InvalidPathMessage : string.Empty);
         }
 
+        private void OnStartingOrStopping(bool actionStarted)
+        {
+            Presenter.OnSessionStartingOrStopping(actionStarted);
+        }
+        private void OnServerRunningChanged(bool serverRunning)
+        {
+            Presenter.OnServerRunningChanged(serverRunning);
+        }
+
         private void RegisterCallbacksFromModel()
         {
-            ZIBridge.Instance.IsStartingOrStoppingChanged += StartingOrStopping;
+            ZIBridge.Instance.OnStartingOrStoppingChanged += OnStartingOrStopping;
+            ZIBridge.Instance.OnServerRunningChanged += OnServerRunningChanged;
             ZIBridge.luminSdkPathProvider.OnMagicLeapSDKPathChanged += OnMagicLeapSDKPathChanged;
             ZIBridge.environmentPathProvider.OnEnvironmentPathChanged += OnEnvironmentPathChanged;
             Model.OnGetControllersResult += OnGetControllersResult;
@@ -158,24 +169,10 @@ namespace MagicLeap.ZI
             Presenter.OnTargetModeChanged += Model.ChangeTargetModel;
         }
 
-        private void StartingOrStopping(bool actionStarted)
-        {
-            if (actionStarted)
-            {
-                return;
-            }
-            else if (!ZIBridge.IsHandleConnected)
-            // If "start" is done abnormally due to error, mark the session as done
-            // to make sure the start/stop button is enabled. 
-            // For "stop", this is just redundant and does not hurt.
-            {
-                OnSessionStopped();
-            }
-        }
-
         private void UnregisterCallbacksFromModel()
         {
-            ZIBridge.Instance.IsStartingOrStoppingChanged -= StartingOrStopping;
+            ZIBridge.Instance.OnStartingOrStoppingChanged -= OnStartingOrStopping;
+            ZIBridge.Instance.OnServerRunningChanged -= OnServerRunningChanged;
             ZIBridge.luminSdkPathProvider.OnMagicLeapSDKPathChanged -= OnMagicLeapSDKPathChanged;
             ZIBridge.environmentPathProvider.OnEnvironmentPathChanged -= OnEnvironmentPathChanged;
             Model.OnGetControllersResult -= OnGetControllersResult;

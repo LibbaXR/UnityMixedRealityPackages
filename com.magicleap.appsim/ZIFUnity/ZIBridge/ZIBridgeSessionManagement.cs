@@ -44,13 +44,11 @@ namespace MagicLeap.ZI
         public static bool IsHandleConnected => Instance.session.GetHandle() != 0 && Instance.session.GetConnected();
         public static SessionTargetMode CurrentTargetMode => Instance.TargetMode;
         public static bool IsSimulatorMode => CurrentTargetMode == SessionTargetMode.Simulator;
-        public static bool IsHybridMode => CurrentTargetMode == SessionTargetMode.Hybrid;
         public static bool IsDeviceMode => CurrentTargetMode == SessionTargetMode.Device;
 
         private const string sessionStatusPathEditorPref = "ZI_SessionStateStatus_Path";
         private const string sessionStatusIsDirtyEditorPref = "ZI_SessionStateStatus_IsDirty";
 
-        private bool reportedIncompatibleError = false;
         private EventQueue zifEventQueue = null;
         private readonly System.Object eventQueueLock = new System.Object();
 
@@ -67,9 +65,7 @@ namespace MagicLeap.ZI
             }
         }
 
-        public bool ReconnectSession() => ReconnectSession(out SessionTargetMode targetMode);
-
-        public bool ReconnectSession(out SessionTargetMode targetMode)
+        public bool ReconnectSession()
         {
             // This is just a hack because the ZIF API has an "event-ful"
             // API but we don't expect this to (1) take a long time
@@ -79,23 +75,17 @@ namespace MagicLeap.ZI
                 // don't log errors when reconnecting fails
             }
 
-            bool result = ReconnectZISession(IgnoreEvent, () => false, out targetMode) && TryConnectToTargetMode(targetMode);
-
-            // NOTE: the targetMode logic was never hooked up in ReconnectZISession.
-            // Ask ZIF directly.
-            try
+            bool result = ReconnectZISession(IgnoreEvent, () => false, out targetMode);
+            if (result && targetMode == SessionTargetMode.Unknown)
             {
-                var modeAndExact = session.DetectTargetMode();
-                targetMode = modeAndExact.first;
-            }
-            catch (ResultIsErrorException)
-            {
-                // ignore
-                targetMode = SessionTargetMode.Unknown;
+                TryDisconnectSession();
+                reconnectedTimestamp = DateTime.UtcNow;
+                result = false;
             }
 
-            IsConnected = result;
             TargetMode = targetMode;
+            IsConnected = result;
+            reconnectedTimestamp = DateTime.UtcNow;
             return result;
         }
 
@@ -118,33 +108,55 @@ namespace MagicLeap.ZI
         private bool ValidateGraphics()
         {
             ProgressMonitor monitor = ProgressMonitor.AllocWithTimeout(3000);
+
+            bool hardwareAccelerationCheckboxIsOn = MagicLeap.ZI.Settings.Instance.HardwareAcceleration;
+
+            Result setHardwareAccelerationResult =
+                ml.zi.Environment.SetHardwareAccelerationEnabled(hardwareAccelerationCheckboxIsOn);
+            if (setHardwareAccelerationResult != Result.Ok) {
+              Debug.Log(
+                  "Failed to modify hardware acceleration setting state successfully, graphics may still work.");
+            }
+
             ReturnedResultString rrs = ml.zi.Environment.TestGraphicsSupport(monitor);
+
             if (rrs.first != Result.Ok)
             {
                 IsStartingOrStopping = true;
                 bool abort = true;
                 string msg = rrs.second;
-                // We do this conversion because EditorUtility.DisplayDialog() does not support hyperlink.
-                // Note if the "msg" is too long, it will be auto-truncated by EditorUtility.DisplayDialog().
-                msg = ConvertLinkInMessage(msg);
 
-                if (rrs.first == Result.LowSpeedGraphics)
+                Func<string, string, bool> displayDialog = (string ok, string cancel) =>
                 {
-                    // give user choice of abort or go-on
-                    bool goon = EditorUtility.DisplayDialog(Constants.zifPluginUserName, msg, "Continue", "Cancel");
-                    abort = !goon;
+                    // We do this conversion because EditorUtility.DisplayDialog() does not support hyperlink.
+                    // Note if the "msg" is too long, it will be auto-truncated by EditorUtility.DisplayDialog().
+                    msg = ConvertLinkInMessage(msg);
+                    return EditorUtility.DisplayDialog(Constants.zifPluginUserName, msg, ok, cancel);
+                };
+
+
+                // If user selected to turn hardware acceleration off, then don't need to
+                // display the dialog.
+                if (rrs.first == Result.LowSpeedGraphics )
+                {
+                    if (hardwareAccelerationCheckboxIsOn) {
+                      bool shouldContinue = displayDialog("Continue", "Cancel");
+                      abort = !shouldContinue;
+                    } else {
+                      abort = false;
+                    }
                 }
                 else if (rrs.first == Result.NoGraphicsSupport)
                 {
                     // don't give user choice, just abort.
-                    EditorUtility.DisplayDialog(Constants.zifPluginUserName, msg, "Ok");
+                    displayDialog("Ok", "");
                 }
                 else
                 {
                     // unexpected result. Should not happen.
                     if (msg.Length > 0)
                     {
-                        EditorUtility.DisplayDialog(Constants.zifPluginUserName, msg, "Ok");
+                        displayDialog("Ok", "");
                     }
                     Debug.LogError("Unexpected result from graphics validation: " + rrs.first);
                 }
@@ -169,10 +181,9 @@ namespace MagicLeap.ZI
 
             asyncSessionStartTask.Start(StartSessionThread, (result) =>
             {
-                IsConnected = result;
-                
                 if (result)
                     TargetMode = targetMode;
+                IsConnected = result;
             });
 
             void StartSessionThread(AsyncTaskState<bool> taskState)
@@ -185,7 +196,7 @@ namespace MagicLeap.ZI
 
                     if (StartZISession(targetMode, taskState.EventCallback, () => taskState.Cancel))
                     {
-                        sessionConnected = TryConnectToTargetMode(targetMode);
+                        sessionConnected = true;
                     }
                     else
                     {
@@ -205,35 +216,6 @@ namespace MagicLeap.ZI
                     IsStartingOrStopping = false;
                 }
             }
-        }
-
-        public async Task<bool> AsyncStopSessionOnThread()
-        {
-            IsStartingOrStopping = true;
-
-            bool status = false;
-            using (var sph = new SemaphoreSlim(0, 1))
-            {
-                void OnComplete(bool result)
-                {
-                    sph.Release();
-
-                    status = result;
-                    if (result) TryDisconnectSession();
-
-                    IsStartingOrStopping = false;
-                }
-
-                StopSessionOnThreadInternal(OnComplete);
-
-                var t = sph.WaitAsync();
-
-                if (await Task.WhenAny(t, Task.Delay(10000)) == t)
-                {
-                    return status;
-                }
-            }
-            throw new TimeoutException(); // whatever you want to do here
         }
 
         public void StopSessionOnThread(Action<bool> onComplete = null)
@@ -278,28 +260,7 @@ namespace MagicLeap.ZI
             }
         }
 
-        public async Task<bool> AsyncSaveSessionOnThread(string path)
-        {
-            bool result = false;
-            using (var sph = new SemaphoreSlim(0, 1))
-            {
-                SaveSessionOnThread(path, b =>
-                {
-                    result = b;
-                    sph.Release();
-                });
-
-                var t = sph.WaitAsync();
-
-                if (await Task.WhenAny(t, Task.Delay(10000)) == t)
-                {
-                    return result;
-                }
-            }
-            throw new TimeoutException(); // whatever you want to do here
-        }
-
-        public void SaveSessionOnThread(string path, Action<bool> onComplete = null, bool isSaveAs = false)
+        public void SaveSessionOnThread(string path, bool isSaveAs = false, Action<bool> onComplete = null)
         {
             bool isPathNull = string.IsNullOrEmpty(path);
 
@@ -311,7 +272,10 @@ namespace MagicLeap.ZI
                     "Magic Leap App Simulator - Save Session", Settings.Key_DefaultSessionPath, defaultName, "session");
 
                 if (path.Length == 0)
-                    throw new Exception("Chosen path is invalid.");
+                {
+                    onComplete?.Invoke(false);
+                    return;
+                }
             }
 
             asyncSessionSaveTask.Start(SaveSessionThread, onComplete);
@@ -323,36 +287,6 @@ namespace MagicLeap.ZI
                 taskState.Result = isSaveSuccessful;
                 taskState.Complete = true;
             }
-        }
-
-        public async Task<bool> AsyncLoadSessionOnThread(string path)
-        {
-            if (string.IsNullOrEmpty(path))
-            {
-                path = EditorUtility.OpenFilePanel(
-                    "Magic Leap App Simulator - Load Session", Settings.Key_DefaultSessionPath, "session");
-
-                if (path.Length == 0)
-                    throw new Exception("Chosen path is invalid.");
-            }
-
-            bool result = false;
-            using (var sph = new SemaphoreSlim(0, 1))
-            {
-                LoadSessionOnThread(path, b =>
-                {
-                    result = b;
-                    sph.Release();
-                });
-
-                var t = sph.WaitAsync();
-
-                if (await Task.WhenAny(t, Task.Delay(10000)) == t)
-                {
-                    return result;
-                }
-            }
-            throw new TimeoutException(); // whatever you want to do here
         }
 
         public void LoadSessionOnThread(string path, Action<bool> onComplete = null)
@@ -416,12 +350,18 @@ namespace MagicLeap.ZI
         private void SubscribeToUserMessageEvents()
         {
             lock (eventQueueLock) {
-                if (zifEventQueue != null)
+                if (zifEventQueue != null && zifEventQueue.GetSession() == this.session)
                     return;
-
-                zifEventQueue = EventQueue.Alloc(session);
-                zifEventQueue.Subscribe(ml.zi.EventType.UserMessage);
-                zifEventQueue.Subscribe(ml.zi.EventType.CancelUserMessage);
+                if (session != null && session.GetHandle() != 0)
+                {
+                    if (zifEventQueue != null) { zifEventQueue.Dispose(); }
+                    zifEventQueue = EventQueue.Alloc(session);
+                    if (zifEventQueue != null)
+                    {
+                        zifEventQueue.Subscribe(ml.zi.EventType.UserMessage);
+                        zifEventQueue.Subscribe(ml.zi.EventType.CancelUserMessage);
+                    }
+                }
             }
         }
 
@@ -440,22 +380,37 @@ namespace MagicLeap.ZI
         private void MonitorUserMessageEvents()
         {
             lock (eventQueueLock) {
-                if (zifEventQueue == null)
-                    return;
+                if (zifEventQueue != null)
+                {
+                    bool tookEvent;
+                    do
+                    {
+                        tookEvent = false;
+                        ml.zi.Event umEvent = zifEventQueue.TakeNext(ml.zi.EventType.UserMessage);
+                        if (umEvent != null)
+                        {
+                            EventUserMessage umE = EventUserMessage.Wrap(umEvent.GetPointer());
+                            syncContext.Post(_ =>
+                            {
+                                EditorUtility.DisplayDialog(Constants.zifPluginUserName, umE.GetMessage(), "Ok");
+                            }, null);
+                            Debug.LogFormat("{0}", umE.GetMessage());
+                            tookEvent = true;
+                        }
 
-                ml.zi.Event umEvent = zifEventQueue.TakeNext(ml.zi.EventType.UserMessage);
-                if (umEvent != null) {
-                    EventUserMessage umE = EventUserMessage.Wrap(umEvent.GetPointer());
-                    syncContext.Post(_=>{
-                        EditorUtility.DisplayDialog(Constants.zifPluginUserName, umE.GetMessage(), "Ok");
-                    }, null);
-                    Debug.LogFormat("{0}", umE.GetMessage());
+                        ml.zi.Event cumEvent = zifEventQueue.TakeNext(ml.zi.EventType.CancelUserMessage);
+                        if (cumEvent != null)
+                        {
+                            EventCancelUserMessage cumE = EventCancelUserMessage.Wrap(cumEvent.GetPointer());
+                            Debug.LogFormat("Cancel User Message: {0}", cumE.GetMessageID());
+                            tookEvent = true;
+                        }
+                    } while (tookEvent);
                 }
 
-                ml.zi.Event cumEvent = zifEventQueue.TakeNext(ml.zi.EventType.CancelUserMessage);
-                if (cumEvent != null) {
-                    EventCancelUserMessage cumE = EventCancelUserMessage.Wrap(cumEvent.GetPointer());
-                    Debug.LogFormat("Cancel User Message: {0}", cumE.GetMessageID());
+                if (zifEventQueue == null || zifEventQueue.GetSession() != this.session)
+                {
+                    SubscribeToUserMessageEvents();
                 }
             }
         }
@@ -496,6 +451,7 @@ namespace MagicLeap.ZI
 
         private void TryDisconnectSession()
         {
+            reconnectedTimestamp = DateTime.UtcNow;
             IsStartingOrStopping = true;
             DisconnectModules();
 
@@ -520,47 +476,6 @@ namespace MagicLeap.ZI
                 IsStartingOrStopping = false;
                 IsConnected = false;
             }
-        }
-
-        private bool TryConnectToTargetMode(SessionTargetMode sessionTargetMode)
-        {
-            bool isSessionConnected = false;
-
-            try
-            {
-                session.SetHandle(GetSessionHandleFromPlugin());
-                session.Connect(tryReconnectMonitor);
-                isSessionConnected = session.GetConnected();
-            }
-            catch
-            {
-                Debug.Log("There is no active session to connect.");
-            }
-
-            return isSessionConnected;
-        }
-
-        private void CheckSessionConnection()
-        {
-            // Server is "connected" to this session.  Session.GetConnected() is not guaranteed
-            // to re-check server state (since that's slow).
-            Result runningResult = Result.DoesNotExist;
-            bool isConnected = false;
-            if (session.GetHandle() != 0 && session.GetConnected())
-            {
-                runningResult = session.Server.GetRunningResult();
-                isConnected = ZIFGen.ResultIsStatus(runningResult);
-                if (runningResult == Result.IncompatibleRuntime)
-                {
-                    isConnected = false;
-                    if (!reportedIncompatibleError) {
-                        Debug.LogError("App Sim runtime is not compatible with ZIF.  Please verify the Unity ZIF and App Sim runtime match.");
-                        reportedIncompatibleError = true;
-                    }
-                }
-            }
-
-            IsConnected = isConnected;
         }
 
         private void UpdateSessionSaveStatus()

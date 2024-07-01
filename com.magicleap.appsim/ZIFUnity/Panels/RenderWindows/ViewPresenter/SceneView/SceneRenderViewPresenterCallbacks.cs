@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ml.zi;
+using UnityEditor;
 using UnityEngine.UIElements;
 
 namespace MagicLeap.ZI
@@ -66,8 +67,15 @@ namespace MagicLeap.ZI
 
         public override void SwitchConnectionStatusMessage(bool isDeviceMode)
         {
-            connectionStatusLabel.text = isDeviceMode ?
-                DeviceRenderViewPresenter.connectionStatusMessageDeviceMode : DeviceRenderViewPresenter.connectionStatusMessageNonDeviceMode;
+            if (EditorApplication.isPaused && ZIBridge.instance.IsServerRunning && ZIBridge.Instance.IsConnected == false)
+            {
+                connectionStatusLabel.text = DeviceRenderViewPresenter.connectionStatusMessagePaused;
+            }
+            else
+            {
+                connectionStatusLabel.text = isDeviceMode ?
+                    DeviceRenderViewPresenter.connectionStatusMessageDeviceMode : DeviceRenderViewPresenter.connectionStatusMessageNonDeviceMode;
+            }
         }
 
         public override void ToggleToolbarButtonsEnabled(bool enableButtons)

@@ -25,13 +25,11 @@ namespace MagicLeap.ZI
 
         private static bool WantsToQuit()
         {
-            if (ZIBridge.Instance.IsConnected)
+            if (ZIBridge.Instance.IsServerRunning)
             {
                 if (Settings.Instance.DirtySessionPrompt == Settings.DirtySessionState.Prompt || Settings.Instance.ShowCloseDialog)
                 {
-#pragma warning disable 4014  // execution of awaited call without await operator
-                    AsyncCloseSession();
-#pragma warning restore 4014
+                    QuitUnityWithConfirmation();
                     return false;
                 }
 
@@ -45,7 +43,11 @@ namespace MagicLeap.ZI
             return true;
         }
 
-        private static async Task AsyncCloseSession()
+        /// <summary>
+        /// Close the session and exit unity editor, prompting user with necessary dialogs
+        /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        private static void QuitUnityWithConfirmation()
         {
             if (ZIBridge.Instance.SessionSaveStatus.RequiresSave)
             {
@@ -54,7 +56,23 @@ namespace MagicLeap.ZI
                 switch (Settings.Instance.DirtySessionPrompt)
                 {
                     case Settings.DirtySessionState.Prompt:
-                        result = await SavingDirtyScenePrompt.AsyncShowPrompt(ZIBridge.Instance.SessionSaveStatus);
+                        SavingDirtyScenePrompt.ShowPrompt(ZIBridge.Instance.SessionSaveStatus, (res) =>
+                        {
+                            if (res.GetValueOrDefault())
+                            {
+                                ZIBridge.Instance.SaveSessionOnThread(ZIBridge.Instance.SessionSaveStatus.Path, false, (success) =>
+                                {
+                                    if (success)
+                                    {
+                                        QuitUnityWithSessionDialog();
+                                    }
+                                });
+                            } 
+                            else if (res.HasValue)  // user answered "no" to saving
+                            {
+                                QuitUnityWithSessionDialog();
+                            }
+                        });
                         break;
                     case Settings.DirtySessionState.SaveSession:
                         result = true;
@@ -67,15 +85,29 @@ namespace MagicLeap.ZI
                         throw new ArgumentOutOfRangeException();
                 }
 
-                if (result == null)
-                    return;
-
-                if (result == true)
+                if (result.GetValueOrDefault())
                 {
-                    await ZIBridge.Instance.AsyncSaveSessionOnThread(ZIBridge.Instance.SessionSaveStatus.Path);
+                    ZIBridge.Instance.SaveSessionOnThread(ZIBridge.Instance.SessionSaveStatus.Path, false, (success) =>
+                    {
+                        if (success)
+                        {
+                            QuitUnityWithSessionDialog();
+                        }
+                    });
+                }
+                else if (result.HasValue)  // user auto-answered "no" to saving
+                {
+                    QuitUnityWithSessionDialog();
                 }
             }
+            else
+            {
+                QuitUnityWithSessionDialog();
+            }
+        }
 
+        private static void QuitUnityWithSessionDialog()
+        {
             if (Settings.Instance.ShowCloseDialog)
             {
                 bool userInput = false;
@@ -102,14 +134,17 @@ namespace MagicLeap.ZI
                         }
                     }
                 };
-                await CheckboxDialog.AsyncShowDialog(dialogSettings);
-
-                if (userInput)
+                CheckboxDialog.ShowDialog(dialogSettings, () =>
                 {
-                    await ZIBridge.Instance.AsyncStopSessionOnThread();
-                }
-
-                ExitUnity();
+                    if (userInput)
+                    {
+                        CloseSession();
+                    }
+                    else
+                    {
+                        ExitUnity();
+                    }
+                });
             }
             else // if (!Settings.Instance.ShowCloseDialog)
             {
@@ -126,6 +161,7 @@ namespace MagicLeap.ZI
 
         private static void CloseSession()
         {
+            EditorApplication.isPlaying = false;
             ZIBridge.Instance.StopSessionOnThread(OnSessionClosed);
         }
 

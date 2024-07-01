@@ -243,6 +243,7 @@ namespace MagicLeap.ZI
                 Mathf.Clamp(touchpadPositionField.value.y, -1, 1),
                 Mathf.Clamp(touchpadPositionField.value.z, 0, 1));
             TouchpadPositionAndForceChanged?.Invoke(TouchpadPosAndForce);
+            TouchpadStateChanged?.Invoke(true);
         }
 
         private void OnTouchpadStateChanged()

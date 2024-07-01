@@ -81,13 +81,13 @@ namespace MagicLeap.ZI
             
             base.Initialize();
             Presenter.SetInteractable(Model.IsSessionRunning);
-            Presenter.SetHybridAndDeviceVisualElements(!Model.IsDeviceMode && !Model.IsHybridMode);
+            Presenter.SetHybridAndDeviceVisualElements(!Model.IsDeviceMode);
         }
 
         private void OnSessionStart()
         {
             Presenter.SetInteractable(true);
-            Presenter.SetHybridAndDeviceVisualElements(!Model.IsDeviceMode && !Model.IsHybridMode);
+            Presenter.SetHybridAndDeviceVisualElements(!Model.IsDeviceMode);
 
             Presenter.SetPosition(Model.GetPosition());
             Presenter.SetOrientation(Model.GetOrientation());

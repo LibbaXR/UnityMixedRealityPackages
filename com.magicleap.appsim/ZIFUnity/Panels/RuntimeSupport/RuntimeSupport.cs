@@ -20,23 +20,8 @@ namespace MagicLeap.ZI
     {
         static RuntimeSupport()
         {
-            // On Windows, adding the plugins directory to PATH variable will allow
-            // the ML support libraries (e.g. perception.magicleap.dll) to successfully
-            // locate their ZIF dependencies (e.g. z.dll).
-            // This modified PATH variable exists only for the running Unity process
-            if (Application.platform == RuntimePlatform.WindowsEditor)
-            {
-                string currPathValue = Environment.GetEnvironmentVariable("PATH").TrimEnd(';');
-                string absPkgPath = Path.GetFullPath(Constants.zifPackagePath);
-                string pluginsPathToAdd = Path.Combine(absPkgPath, "Plugins", Application.platform.ToString());
-                if (!currPathValue.Contains(pluginsPathToAdd))
-                {
-                    Environment.SetEnvironmentVariable("PATH", $"{currPathValue};{pluginsPathToAdd}");
-                }
-            }
-
             EditorApplication.playModeStateChanged += CheckIfEnteredPlayMode;
-        }       
+        }
 
         private static void CheckIfEnteredPlayMode(PlayModeStateChange playModeState)
         {
@@ -53,29 +38,15 @@ namespace MagicLeap.ZI
 
         private static void OnEnteredPlayMode()
         {
-            ZIBridge.Instance.OnSessionConnectedChanged += SessionConnectionStatusChanged;
-            if (ZIBridge.Instance.IsConnected)
+            if (Settings.Instance.GameViewPoseDriverEnabled)
             {
-                if (Settings.Instance.GameViewPoseDriverEnabled)
-                {
-                    var harness = Camera.main.gameObject.AddComponent<ZIPoseHarness>();
-                    harness.SetDriver(new RuntimeHeadposeDriver());
-                }
+                var harness = Camera.main.gameObject.AddComponent<ZIPoseHarness>();
+                harness.SetDriver(new RuntimeHeadposeDriver());
             }
         }
 
         private static void OnExitPlayMode()
         {
-            ZIBridge.Instance.OnSessionConnectedChanged -= SessionConnectionStatusChanged;
-        }
-
-        private static void SessionConnectionStatusChanged(bool connectionStatus)
-        {
-            if (ZIBridge.IsSessionConnected)
-                return;
-
-            if (EditorApplication.isPlaying) 
-                EditorApplication.isPlaying = false;
         }
     }
 }
