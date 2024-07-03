@@ -163,14 +163,14 @@ namespace MagicLeap.ZI
             contextMenu.ShowAsContext();
         }
 
-        private async void ShowProfileSavePrompt()
+        private void ShowProfileSavePrompt()
         {
-            var result = await SavingPermissionProfilePrompt.AsyncShowPrompt();
-
-            if (string.IsNullOrEmpty(result))
-                return;
-
-            OnProfileSaved?.Invoke(result, Permissions);
+            SavingPermissionProfilePrompt.ShowPrompt((result) => {
+                if (!string.IsNullOrEmpty(result))
+                {
+                    OnProfileSaved?.Invoke(result, Permissions);
+                }
+            });
         }
 
         private void OnManifestFilePickerButtonClicked()

@@ -9,7 +9,6 @@
 // %BANNER_END%
 
 using System;
-using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -26,27 +25,16 @@ namespace MagicLeap.ZI
         private Button yesButton;
         private Button cancelButton;
 
-        private bool shown = false;
         private string result = null;
-        
-        public static async Task<string> AsyncShowPrompt()
+        private Action<string> onComplete;
+
+        public static void ShowPrompt(Action<string> onComplete)
         {
             var window = CreateInstance<SavingPermissionProfilePrompt>();           
-            window.Initialize();
-            
-            var waitTask = Task.Run(async () =>
-            {
-                while (window.shown) 
-                    await Task.Delay(25);
-            });
-
-            if(waitTask != await Task.WhenAny(waitTask))
-                throw new TimeoutException();
-
-            return window.result;
+            window.Initialize(onComplete);
         }
 
-        private void Initialize()
+        private void Initialize(Action<string> onComplete)
         {
             SetWindow();
             var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(viewFilePath);
@@ -54,7 +42,7 @@ namespace MagicLeap.ZI
             BindUIElements();
             RegisterUICallbacks();
             
-            shown = true;
+            this.onComplete = onComplete;
 
             Show(true);
             Focus();
@@ -65,11 +53,15 @@ namespace MagicLeap.ZI
             titleContent.text = "Profile name";
             maxSize = new Vector2(400, 250);
             minSize = new Vector2(400, 250);
+            Rect main = Utils.GetUnityCurrentMonitorRect();
+            float centerWidth = (main.width - minSize.x) * 0.5f;
+            float centerHeight = main.height * .33f - minSize.y * 0.5f; // .33 puts dialog in upper third of parent window for aesthetics
             position = new Rect(
-                (Screen.currentResolution.width * x1dpi / Screen.dpi - minSize.x) / 2,
-                (Screen.currentResolution.height * x1dpi / Screen.dpi - minSize.y) / 2,
+                main.x + centerWidth,
+                main.y + centerHeight,
                 minSize.x,
                 minSize.y);
+
         }
 
         private void BindUIElements()
@@ -89,15 +81,14 @@ namespace MagicLeap.ZI
         {
             result = profileNameInput.value;
             
-            shown = false;
             Close();
+            onComplete?.Invoke(result);
         }
         
         private void OnCancelButtonClicked()
         {
-            
-            shown = false;
             Close();
+            onComplete?.Invoke(result);
         }
     }
 }

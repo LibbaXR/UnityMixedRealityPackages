@@ -167,15 +167,14 @@ namespace MagicLeap.ZI
 
         public int GetPupilDistance()
         {
-            if (ZIBridge.IsDeviceMode)
+            if (ZIBridge.IsSimulatorMode)
             {
-                return 0;
+                var valueJson =
+                    ConfigurationSettings.Handle.GetValueJson(Constants.zifSimulatorDeviceName, PupilDistanceKey);
+                int.TryParse(valueJson, NumberStyles.Any, CultureInfo.InvariantCulture, out var result);
+                return result;
             }
-
-            var valueJson =
-                ConfigurationSettings.Handle.GetValueJson(Constants.zifSimulatorDeviceName, PupilDistanceKey );
-            int.TryParse(valueJson, NumberStyles.Any, CultureInfo.InvariantCulture, out var result);
-            return result;
+            return 0;
         }
         public bool GetRightEyeBlink()
         {

@@ -43,7 +43,7 @@ namespace MagicLeap.ZI
             
             base.Initialize();
             Presenter.SetPanelActive(Model.IsSessionRunning);
-            if (Model.IsHybridMode || Model.IsDeviceMode)
+            if (Model.IsDeviceMode)
             {
                 Presenter.EyeTrackingSubView.DisableHybridFields();
             }
@@ -52,7 +52,7 @@ namespace MagicLeap.ZI
         private void OnSessionConnected()
         {
             Presenter.SetPanelActive(true);
-            if (Model.IsHybridMode || Model.IsDeviceMode)
+            if (Model.IsDeviceMode)
             {
                 Presenter.EyeTrackingSubView.DisableHybridFields();
             }

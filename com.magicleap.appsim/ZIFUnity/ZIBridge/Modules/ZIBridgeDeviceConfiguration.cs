@@ -34,7 +34,7 @@ namespace MagicLeap.ZI
                 catch (ResultIsErrorException e)
                 {
                     // seems like ZIF will incorrectly report this in device mode; ignore this case
-                    if (e.Result != ml.zi.Result.DeviceNotFound)
+                    if (e.Result != ml.zi.Result.DeviceNotFound && e.Result != ml.zi.Result.CommunicationsFailed)
                     {
                         UnityEngine.Debug.LogError($"Failed to load device configuration: {e}");
                     }

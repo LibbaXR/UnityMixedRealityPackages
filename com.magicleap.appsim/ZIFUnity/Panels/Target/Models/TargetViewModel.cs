@@ -10,7 +10,6 @@
 
 using System;
 using System.IO;
-using System.Threading.Tasks;
 using ml.zi;
 using UnityEditor;
 using UnityEngine;
@@ -40,12 +39,9 @@ namespace MagicLeap.ZI
 
         public void ChangeSessionConnection(SessionTargetMode targetMode)
         {
-            if (!ZIBridge.IsHandleConnected)
+            if (!ZIBridge.instance.IsServerRunning)
             {
-                if (!Bridge.ReconnectSession())
-                {
-                    Bridge.StartSessionOnThread(targetMode);
-                }
+                Bridge.StartSessionOnThread(targetMode);
             }
             else
             {
@@ -69,16 +65,6 @@ namespace MagicLeap.ZI
             }
         }
 
-        private async Task AsyncStopSession()
-        {
-            var result = await ShowSavePrompt();
-
-            if (!result)
-                return;
-
-            await Bridge.AsyncStopSessionOnThread();
-        }
-
         public void ChangeTargetModel(PeripheralTargetMode targetMode)
         {
             if (!Peripheral.IsHandleConnected)
@@ -87,20 +73,21 @@ namespace MagicLeap.ZI
             Peripheral.Handle.SetTargetMode(targetMode);
         }
 
-        public async void LoadSession(string sessionFilePath)
+        public void LoadSession(string sessionFilePath)
         {
             OnStartedLoadingSession?.Invoke();
-            try
-            {
-                await AsyncLoadSession(sessionFilePath);
-            }
-            finally
-            {
+            AsyncLoadSession(sessionFilePath, (_) => { 
                 OnFinishedLoadingSession?.Invoke();
-            }
+            });
         }
 
-        private async Task<bool> ShowSavePrompt()
+        /// <summary>
+        /// Saves the session (if marked dirty) with a confirmation prompt. Returns false if save failed or user cancelled.
+        /// Returns true if successful or user declined (chose 'no') to dialog. Also returns true if no save was needed.
+        /// </summary>
+        /// <param name="onComplete"></param>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        private void ShowSavePrompt(Action<bool> onComplete)
         {
             if (ZIBridge.Instance.SessionSaveStatus.RequiresSave)
             {
@@ -109,7 +96,17 @@ namespace MagicLeap.ZI
                 switch (Settings.Instance.DirtySessionPrompt)
                 {
                     case Settings.DirtySessionState.Prompt:
-                        result = await SavingDirtyScenePrompt.AsyncShowPrompt(ZIBridge.Instance.SessionSaveStatus);
+                        SavingDirtyScenePrompt.ShowPrompt(ZIBridge.Instance.SessionSaveStatus, (res) =>
+                        {
+                            if (res.GetValueOrDefault())
+                            {
+                                ZIBridge.Instance.SaveSessionOnThread(ZIBridge.Instance.SessionSaveStatus.Path, false, onComplete);
+                            }
+                            else
+                            {
+                                onComplete?.Invoke(res.HasValue);
+                            }
+                        });
                         break;
                     case Settings.DirtySessionState.SaveSession:
                         result = true;
@@ -122,26 +119,33 @@ namespace MagicLeap.ZI
                         throw new ArgumentOutOfRangeException();
                 }
 
-                if (result == null)
-                    return false;
-
-                if (result == true)
+                if (result.GetValueOrDefault())
                 {
-                    await ZIBridge.Instance.AsyncSaveSessionOnThread(ZIBridge.Instance.SessionSaveStatus.Path);
+                    ZIBridge.Instance.SaveSessionOnThread(ZIBridge.Instance.SessionSaveStatus.Path, false, onComplete);
+                }
+                else if (result.HasValue) // result is null if we executed the Settings.DirtySessionState.Prompt case.
+                {
+                    onComplete?.Invoke(true);
                 }
             }
-
-            return true;
+            else
+            {
+                onComplete?.Invoke(true);
+            }
         }
 
-        private async Task AsyncLoadSession(string sessionFilePath)
+        private void AsyncLoadSession(string sessionFilePath, Action<bool> onComplete=null)
         {
-            var result = await ShowSavePrompt();
-
-            if (!result)
-                return;
-
-            await Bridge.AsyncLoadSessionOnThread(sessionFilePath);
+            ShowSavePrompt((res) => {
+                if (res)
+                {
+                    Bridge.LoadSessionOnThread(sessionFilePath, onComplete);
+                }
+                else
+                {
+                    onComplete?.Invoke(false);
+                }
+            });
         }
 
         private void OnSessionSaveStatusChanged(SessionSaveStatus saveStatus)
@@ -170,31 +174,30 @@ namespace MagicLeap.ZI
             ZIBridge.Instance.OnSessionSaveStatusChanged -= OnSessionSaveStatusChanged;
         }
 
-        public async void OnOpenSessionSelected()
+        public void OnOpenSessionSelected()
         {
             OnStartedPickingSession?.Invoke();
-            try
-            {
-                await AsyncOpenSessionSelected();
-            }
-            finally
-            {
+            AsyncOpenSessionSelected((_) => {
                 OnFinishedPickingSession?.Invoke();
-            }
+            });
         }
 
-        private async Task AsyncOpenSessionSelected()
+        private void AsyncOpenSessionSelected(Action<bool> onCompleted)
         {
-            var result = await ShowSavePrompt();
-
-            if (!result)
-                return;
-
-            string path = EditorUtility.OpenFilePanel("Magic Leap App Simulator - Load Session", GetMostRecentPath(), "session");
-            if (path.Length != 0)
-            {
-                await Bridge.AsyncLoadSessionOnThread(path);
-            }
+            ShowSavePrompt((res) => { 
+                if (res)
+                {
+                    string path = EditorUtility.OpenFilePanel("Magic Leap App Simulator - Load Session", GetMostRecentPath(), "session");
+                    if (path.Length != 0)
+                    {
+                        Bridge.LoadSessionOnThread(path, onCompleted);
+                    }
+                }
+                else
+                {
+                    onCompleted?.Invoke(false);
+                }
+            });
         }
 
         public void OnSaveSessionAsSelected()

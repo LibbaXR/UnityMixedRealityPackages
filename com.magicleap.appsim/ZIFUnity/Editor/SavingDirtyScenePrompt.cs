@@ -9,7 +9,6 @@
 // %BANNER_END%
 
 using System;
-using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -28,26 +27,16 @@ namespace MagicLeap.ZI
         private Button noButton;
         private Button cancelButton;
 
-        private bool shown = false;
         private bool? result = null;
-        public static async Task<bool?> AsyncShowPrompt(SessionSaveStatus settings)
+        private Action<bool?> onComplete;
+
+        public static void ShowPrompt(SessionSaveStatus settings, Action<bool?> onComplete)
         {
             var window = CreateInstance<SavingDirtyScenePrompt>();           
-            window.Initialize(settings);
-            
-            var waitTask = Task.Run(async () =>
-            {
-                while (window.shown) 
-                    await Task.Delay(25);
-            });
-
-            if(waitTask != await Task.WhenAny(waitTask))
-                throw new TimeoutException();
-
-            return window.result;
+            window.Initialize(settings, onComplete);
         }
 
-        private void Initialize(SessionSaveStatus settings)
+        private void Initialize(SessionSaveStatus settings, Action<bool?> onComplete)
         {
             SetWindow();
             var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(viewFilePath);
@@ -56,8 +45,9 @@ namespace MagicLeap.ZI
             RegisterUICallbacks();
 
             string path = !string.IsNullOrEmpty(settings.Path) ? settings.Path : "Unsaved Session";
-            descriptionLabel.text = $"There are unsaved changes in the room session \"{path}\". Do you want to save it? ";
-            shown = true;
+			// change '\' => '/' because unity dialog text line subdivision (for long lines) is confusing by back slashes.
+            descriptionLabel.text = string.Format("There are unsaved changes in the room session \"{0}\". Do you want to save it?", path.Replace('\\', '/'));
+            this.onComplete = onComplete;
             
             ShowModalUtility();
         }
@@ -67,9 +57,12 @@ namespace MagicLeap.ZI
             titleContent.text = "Unsaved changes in room session.";
             maxSize = new Vector2(360, 135);
             minSize = new Vector2(360, 135);
+            Rect main = Utils.GetUnityCurrentMonitorRect();
+            float centerWidth = (main.width - minSize.x) * 0.5f;
+            float centerHeight = main.height * .33f - minSize.y * 0.5f;  // .33 puts dialog in upper third of parent window for aesthetics
             position = new Rect(
-                (Screen.currentResolution.width * x1dpi / Screen.dpi - minSize.x) / 2,
-                (Screen.currentResolution.height * x1dpi / Screen.dpi - minSize.y) / 2,
+                main.x + centerWidth,
+                main.y + centerHeight,
                 minSize.x,
                 minSize.y);
         }
@@ -96,8 +89,8 @@ namespace MagicLeap.ZI
                 Settings.Instance.DirtySessionPrompt = Settings.DirtySessionState.SaveSession;
 
             result = true;
-            shown = false;
             Close();
+            onComplete?.Invoke(result);
         }
         
         private void OnNoButtonClicked()
@@ -106,14 +99,14 @@ namespace MagicLeap.ZI
                 Settings.Instance.DirtySessionPrompt = Settings.DirtySessionState.DiscardChanges;
             
             result = false;
-            shown = false;
             Close();
+            onComplete?.Invoke(result);
         }
 
         private void OnCancelButtonClicked()
         {
-            shown = false;
             Close();
+            onComplete?.Invoke(result);
         }
 
     }

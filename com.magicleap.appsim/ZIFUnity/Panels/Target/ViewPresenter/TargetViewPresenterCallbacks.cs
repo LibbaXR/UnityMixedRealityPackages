@@ -24,51 +24,74 @@ namespace MagicLeap.ZI
         public event Action OnSaveSessionSelected; 
         public event Action<string> OnRemoveSessionFromRecentListSelected;
 
+        private void SetConnectButtonIcon(bool Start)
+        {
+            if (Start)
+            {
+                if (startStopIcon.ClassListContains("stopTargetIcon"))
+                {
+                    startStopIcon.RemoveFromClassList("stopTargetIcon");
+                    startStopIcon.AddToClassList("startTargetIcon");
+                }
+                targetConnectButton.tooltip = "Start App Sim";
+            }
+            else
+            {
+                if (startStopIcon.ClassListContains("startTargetIcon"))
+                {
+                    startStopIcon.RemoveFromClassList("startTargetIcon");
+                    startStopIcon.AddToClassList("stopTargetIcon");
+                }
+                targetConnectButton.tooltip = "Stop App Sim";
+            }
+        }
+
         public void OnConnectionSuccess()
         {
-            targetConnectButton.tooltip = "Stop App Sim";
             targetConnectButton.SetEnabled(true);
-            
-            if (startStopIcon.ClassListContains("startTargetIcon"))
-            {
-                startStopIcon.RemoveFromClassList("startTargetIcon");
-                startStopIcon.AddToClassList("stopTargetIcon");
-            }
+            SetConnectButtonIcon(false);
+            sessionDropdownButton.SetEnabled(true);
 
             targetCameraButton.SetEnabled(true);
-            sessionDropdownButton.SetEnabled(true);
-            
             if (currentSessionLabel.ClassListContains("disabledLabel"))
             {
                 currentSessionLabel.RemoveFromClassList("disabledLabel");
             }
             
-            targetEnumField.SetEnabled(false);
             if (ZIBridge.CurrentTargetMode != SessionTargetMode.Unknown)
                 targetEnumField.SetValueWithoutNotify(currentTargetMode = (TargetViewState.SelectableTargets)ZIBridge.CurrentTargetMode);
         }
 
         public void OnDisconnect()
         {
-            targetConnectButton.tooltip = "Start App Sim";
             targetConnectButton.SetEnabled(true);
-            if (startStopIcon.ClassListContains("stopTargetIcon"))
-            {
-                startStopIcon.RemoveFromClassList("stopTargetIcon");
-                startStopIcon.AddToClassList("startTargetIcon");
-            }
-
+            SetConnectButtonIcon(!ZIBridge.instance.IsServerRunning);
             targetCameraButton.SetEnabled(false);
             sessionDropdownButton.SetEnabled(false);
-            
+
             if (!currentSessionLabel.ClassListContains("disabledLabel"))
             {
                 currentSessionLabel.AddToClassList("disabledLabel");
             }
             
-            targetEnumField.SetEnabled(true);
             if (ZIBridge.CurrentTargetMode != SessionTargetMode.Unknown)
                 targetEnumField.SetValueWithoutNotify(currentTargetMode = (TargetViewState.SelectableTargets)ZIBridge.CurrentTargetMode);
+        }
+
+        internal void OnSessionStartingOrStopping(bool actionStarted)
+        {
+            targetConnectButton.SetEnabled(!actionStarted);
+            bool targetEnumEnabled = !actionStarted && !ZIBridge.instance.IsServerRunning;
+            targetEnumField.SetEnabled(targetEnumEnabled);
+            bool sessionDropdownEnabled = !actionStarted && ZIBridge.instance.IsConnected;
+            sessionDropdownButton.SetEnabled(sessionDropdownEnabled);
+        }
+
+        internal void OnServerRunningChanged(bool serverRunning)
+        {
+            SetConnectButtonIcon(!serverRunning);
+            targetEnumField.SetEnabled(!serverRunning);
+            sessionDropdownButton.SetEnabled(serverRunning && ZIBridge.instance.IsConnected);
         }
 
         public void SetEnabled(bool enabled)
@@ -94,7 +117,6 @@ namespace MagicLeap.ZI
 
         private void OnConnectButtonClickedInternal()
         {
-            targetConnectButton.SetEnabled(false);
             var runningOrNewMode = (SessionTargetMode) State.TargetMode;
             OnConnectButtonClicked(runningOrNewMode);
             if (runningOrNewMode != SessionTargetMode.Unknown)
