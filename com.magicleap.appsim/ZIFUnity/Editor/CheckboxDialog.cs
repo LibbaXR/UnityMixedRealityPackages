@@ -9,11 +9,15 @@
 // %BANNER_END%
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using NUnit.Framework.Constraints;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEditor.PlayerSettings;
 
 namespace MagicLeap.ZI
 {
@@ -21,8 +25,8 @@ namespace MagicLeap.ZI
     {
         private const int x1dpi = 96;
 
-        private event Action<bool> YesButtonClicked;
-        private event Action<bool> NoButtonClicked;
+        private Action<bool> yesButtonClicked;
+        private Action<bool> noButtonClicked;
         private string viewFilePath = "Packages/com.magicleap.appsim/ZIFUnity/Editor/CheckboxDialogView.uxml";
 
         private Label descriptionLabel;
@@ -30,29 +34,16 @@ namespace MagicLeap.ZI
         private Button yesButton;
         private Button noButton;
 
-        private bool shown = false;
-        
-        public static void ShowDialog(CheckboxDialogSettings settings)
+        private Action onComplete;
+
+
+        public static void ShowDialog(CheckboxDialogSettings settings, Action onComplete = null)
         {
             var window = CreateInstance<CheckboxDialog>();           
-            window.Initialize(settings);
+            window.Initialize(settings, onComplete);
         }
 
-        public static async Task AsyncShowDialog(CheckboxDialogSettings settings)
-        {
-            var window = CreateInstance<CheckboxDialog>();           
-            window.Initialize(settings);
-            
-            var waitTask = Task.Run(async () =>
-            {
-                while (window.shown) await Task.Delay(25);
-            });
-
-            if(waitTask != await Task.WhenAny(waitTask))
-                throw new TimeoutException();
-        }
-        
-        private void Initialize(CheckboxDialogSettings settings)
+        private void Initialize(CheckboxDialogSettings settings, Action onComplete)
         {
             SetWindow(settings);
             var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(viewFilePath);
@@ -62,21 +53,23 @@ namespace MagicLeap.ZI
             SetUIElements(settings);          
             ApplyStyles(settings);
 
-            shown = true;
+            this.onComplete = onComplete;
             
             ShowModalUtility();
         }
-
         private void SetWindow(CheckboxDialogSettings settings)
         {
             titleContent.text = settings.Name;
             maxSize = settings.Size;
             minSize = settings.Size;
-            YesButtonClicked += settings.YesAction;
-            NoButtonClicked += settings.NoAction;
+            yesButtonClicked += settings.YesAction;
+            noButtonClicked += settings.NoAction;
+            Rect main = Utils.GetUnityCurrentMonitorRect();
+            float centerWidth = (main.width - settings.Size.x) * 0.5f;
+            float centerHeight = main.height *.33f - settings.Size.y * 0.5f;  // .33 puts dialog in upper third of parent window for aesthetics
             position = new Rect(
-                (Screen.currentResolution.width * x1dpi / Screen.dpi - settings.Size.x) / 2,
-                (Screen.currentResolution.height * x1dpi / Screen.dpi - settings.Size.y) / 2,
+                main.x + centerWidth,
+                main.y + centerHeight,
                 settings.Size.x,
                 settings.Size.y);
         }
@@ -126,15 +119,15 @@ namespace MagicLeap.ZI
 
         private void OnYesButtonClicked()
         {
-            shown = false;
             Close();
-            YesButtonClicked?.Invoke(checkboxToggle.value);
+            yesButtonClicked?.Invoke(checkboxToggle.value);
+            onComplete?.Invoke();
         }
         private void OnNoButtonClicked()
         {
-            shown = false;
             Close();
-            NoButtonClicked?.Invoke(checkboxToggle.value);
+            noButtonClicked?.Invoke(checkboxToggle.value);
+            onComplete?.Invoke();
         }
     }
 }

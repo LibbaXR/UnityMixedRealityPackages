@@ -90,7 +90,7 @@ namespace MagicLeap.ZI
             public void SetTrackingKeyPose(HandTrackingGesture value) => HandTracking.Handle.SetGesture(value);
             public void SetFollowHeadPose(bool value) => HandTracking.Handle.SetFollowHeadpose(value);
 
-            public void ResetHandCenter() => HandTracking.Handle.ResetHandCenter();
+            public void ResetHandCenter() => HandTracking.Handle.ResetHandGizmoLocation();
         }
     }
 }

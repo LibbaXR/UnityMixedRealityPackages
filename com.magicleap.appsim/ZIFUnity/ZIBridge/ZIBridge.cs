@@ -39,8 +39,9 @@ namespace MagicLeap.ZI
         // Use ZISettings.Instance.EnableDebugLogging otherwise.
         internal static bool Debugging => EditorPrefs.GetBool("ZI_Settings_Debug", false);
 
-        public Action<bool> IsStartingOrStoppingChanged;
+        public Action<bool> OnStartingOrStoppingChanged;
         private bool isStartingOrStopping;
+        private bool isStartingOrStoppingChanged;
 
         // Disable hybrid mode from now on.....2023.08.10
         // This env var is for INTERNAL USER only.
@@ -61,9 +62,8 @@ namespace MagicLeap.ZI
             {
                 if (isStartingOrStopping == value)
                     return;
-
+                isStartingOrStoppingChanged = true; // set this flag to remember to invoke the OnStartingOrStoppingChanged, but on the UI thread
                 isStartingOrStopping = value;
-                IsStartingOrStoppingChanged?.Invoke(isStartingOrStopping);
             }
         }
 
@@ -74,17 +74,30 @@ namespace MagicLeap.ZI
         public bool IsConnected
         {
             get => isConnected;
-            set
+            private set
             {
-                if (isConnected == value)
-                    return;
-
-                isConnected = value;
-                OnSessionConnectedChanged?.Invoke(isConnected);
+                if (isConnected != value)
+                {
+                    isConnected = value;
+                    OnSessionConnectedChanged?.Invoke(isConnected);
+                }
             }
         }
 
-        private bool IsServerRunning { get; set; }
+        public Action<bool> OnServerRunningChanged;
+
+        private bool isServerRunning = false;
+        public bool IsServerRunning {
+            get => isServerRunning;
+            private set
+            {
+                if (value != isServerRunning)
+                {
+                    isServerRunning = value;
+                    OnServerRunningChanged?.Invoke(isServerRunning);
+                }
+            }
+        }
 
         private SessionTargetMode TargetMode
         {
@@ -94,16 +107,13 @@ namespace MagicLeap.ZI
             {
                 if (targetMode == value)
                     return;
-
                 targetMode = value;
-
                 OnTargetModeChanged?.Invoke(targetMode);
-                connectedTimestamp = DateTime.UtcNow;
             }
         }
 
         private SessionTargetMode targetMode;
-        private DateTime connectedTimestamp;
+        private DateTime reconnectedTimestamp;
 
         private ZIBridge()
         {
@@ -129,6 +139,13 @@ namespace MagicLeap.ZI
 
         private void OnEditorApplicationUpdate()
         {
+            UpdatePlugin();
+            MonitorUserMessageEvents();
+            if (isStartingOrStoppingChanged)
+            {
+                isStartingOrStoppingChanged = false;
+                OnStartingOrStoppingChanged?.Invoke(isStartingOrStopping);  // invoke this from the UI thread
+            }
             if (IsStartingOrStopping)
                 return;
 
@@ -136,7 +153,6 @@ namespace MagicLeap.ZI
             UpdateSDKPaths();
             UpdateSessionSaveStatus();
             CheckModulesChanges();
-            MonitorUserMessageEvents();
         }
 
         private void CheckModulesChanges()
@@ -176,31 +192,35 @@ namespace MagicLeap.ZI
                 return;
             }
 
-            try
+            if (IsConnected)
             {
-                var modeAndExact = session.DetectTargetMode();
-                TargetMode = modeAndExact.first;
-            }
-            catch (ResultIsErrorException)
-            {
-                // ignore
-                TargetMode = SessionTargetMode.Unknown;
+                var targetMode = TargetMode;
+                try
+                {
+                    var modeAndExact = session.DetectTargetMode();
+                    targetMode = modeAndExact.first;
+                }
+                catch (ResultIsErrorException)
+                {
+                    // ignore
+                    targetMode = SessionTargetMode.Unknown;
+                }
+                // Pause check due to unity instability: https://magicleap.atlassian.net/browse/REM-5950
+                if ((targetMode != TargetMode || EditorApplication.isPaused) && IsConnected)
+                {
+                    TryDisconnectSession();
+                    return;
+                }
             }
 
-            if (TargetMode == SessionTargetMode.Unknown && IsConnected)
+            // Pause check due to unity instability: https://magicleap.atlassian.net/browse/REM-5950
+            if (IsConnected || EditorApplication.isPaused || DateTime.UtcNow.Subtract(reconnectedTimestamp).TotalSeconds < 2f)
             {
-                TryDisconnectSession();
                 return;
             }
-
-            if (TargetMode == SessionTargetMode.Unknown)
-                return;
-
-            if (IsConnected || DateTime.UtcNow.Subtract(connectedTimestamp).TotalSeconds < 2f)
-                return;
 
             // try to connect 
-            IsConnected = ReconnectSession(out var reconnectedTargetMode);
+            ReconnectSession();
         }
     }
 }

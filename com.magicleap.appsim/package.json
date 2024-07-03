@@ -1,9 +1,9 @@
 {
   "name": "com.magicleap.appsim",
   "displayName": "Magic Leap App Simulator for Unity",
-  "version": "3.7.0-20231006",
-  "unity": "2022.2",
-  "description": "Allows using Magic Leap App Simulator for Unity directly from the Unity editor. This requires installing Magic Leap Hub and installing the Magic Leap App Simulator Runtime.",
+  "version": "3.9.0-20240312",
+  "unity": "2022.3",
+  "description": "Allows using Magic Leap App Simulator directly from the Unity editor. This requires installing Magic Leap Hub and installing the Magic Leap App Simulator Runtime.",
   "keywords": [
     "magicleap",
     "ar",

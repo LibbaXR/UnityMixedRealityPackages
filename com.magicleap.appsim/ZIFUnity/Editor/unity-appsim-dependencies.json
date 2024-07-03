@@ -1,6 +1,6 @@
 // This file lists the Magic Leap packages (and their versions) required by the com.magicleap.appsim Unity package.
 {
-  "com.magicleap.unitysdk": "1.12.0",
+  "com.magicleap.unitysdk": "1.12.1",
   "com.unity.xr.magicleap": "7.0.0",
-  "appsim.runtime": "3.7.0.20231006"
+  "appsim.runtime": "3.9.0.20240312"
 }

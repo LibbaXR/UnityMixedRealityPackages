@@ -53,6 +53,9 @@ namespace MagicLeap.ZI
         [DllImport("zifUnity", EntryPoint = "SetDeviceViewRendererMode")]
         private static extern void UpdateDeviceRendererToMode(RendererMode rendererMode);
 
+        [DllImport("zifUnity")]
+        private static extern void UpdatePlugin();
+
         public void EnableTwoEyeModeForDeviceView(bool useTwoEyedMode)
         {
             SetDeviceViewRenderTwoEyedMode(useTwoEyedMode);

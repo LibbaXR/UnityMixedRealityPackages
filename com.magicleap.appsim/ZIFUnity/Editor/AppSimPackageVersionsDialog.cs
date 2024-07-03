@@ -8,6 +8,8 @@
 // ---------------------------------------------------------------------
 // %BANNER_END%
 
+using ml.zi;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,6 +17,7 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Unity.EditorCoroutines.Editor;
 using UnityEditor;
 using UnityEditor.XR.MagicLeap;
 using UnityEngine;
@@ -338,17 +341,24 @@ namespace MagicLeap.ZI
             }
         }
 
-        private async void RefreshVersionInfoAsync()
+        private void RefreshVersionInfoAsync()
         {
-            await Task.Yield();
-            RefreshVersionInfo();
-            Repaint();
+            EditorCoroutineUtility.StartCoroutine(RefreshVersion(), this);
+
+            IEnumerator RefreshVersion()
+            {
+                var waitForEndOfFrame = new WaitForEndOfFrame();
+                yield return waitForEndOfFrame;
+                RefreshVersionInfo();
+                Repaint();
+            }
         }
 
         private static bool EditorIsUpdating()
         {
             return AssetDatabase.IsAssetImportWorkerProcess() || EditorApplication.isUpdating || EditorApplication.isCompiling;
         }
+
 
         private void OnGUI()
         {

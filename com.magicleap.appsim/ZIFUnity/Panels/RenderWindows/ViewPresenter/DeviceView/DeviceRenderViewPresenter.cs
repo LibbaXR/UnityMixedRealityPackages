@@ -25,6 +25,7 @@ namespace MagicLeap.ZI
             ZIBridge.IsHybridDisabled() ?
             "Please start a Simulator target to enable this view." :
             "Please start a Simulator or Hybrid target to enable this view.";
+        public static readonly string connectionStatusMessagePaused = "<Connection Paused>";
 
         public event Action ResetHeadposeButtonHandler;
 
@@ -62,7 +63,14 @@ namespace MagicLeap.ZI
 
         public override void SwitchConnectionStatusMessage(bool isDeviceMode)
         {
-            connectionStatusLabel.text = isDeviceMode ? connectionStatusMessageDeviceMode : connectionStatusMessageNonDeviceMode;
+            if (EditorApplication.isPaused && ZIBridge.instance.IsServerRunning && ZIBridge.Instance.IsConnected == false)
+            {
+                connectionStatusLabel.text = connectionStatusMessagePaused;
+            }
+            else
+            {
+                connectionStatusLabel.text = isDeviceMode ? connectionStatusMessageDeviceMode : connectionStatusMessageNonDeviceMode;
+            }
         }
 
         public override void ToggleToolbarButtonsEnabled(bool enableButtons)

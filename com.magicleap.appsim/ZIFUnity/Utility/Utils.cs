@@ -8,7 +8,10 @@
 // ---------------------------------------------------------------------
 // %BANNER_END%
 
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using ml.zi;
 using UnityEngine;
 using Event = UnityEngine.Event;
@@ -347,5 +350,48 @@ namespace MagicLeap.ZI
 
             return result;
         }
+
+        /// <summary>
+        /// Uses reflection and some other magic to get the unity editor's screen position.
+        /// Lifted from https://forum.unity.com/threads/issue-setting-the-position-of-an-editorwindow-opened-with-showutility.1069304/
+        /// </summary>
+        public static Rect GetUnityCurrentMonitorRect()
+        {
+            IEnumerable<Type> derivedTypes = AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(assembly => assembly.GetTypes())
+                .Where(type => type.IsSubclassOf(typeof(ScriptableObject)));
+            Type containerWinType = derivedTypes.FirstOrDefault(t => "ContainerWindow".Equals(t.Name));
+            if (containerWinType == null)
+            {
+                Debug.LogError("Can't find ContainerWindow");
+            }
+            FieldInfo showModeField = containerWinType.GetField("m_ShowMode",
+                System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            PropertyInfo rootViewProperty = containerWinType.GetProperty("rootView",
+                System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+            if (showModeField == null || rootViewProperty == null)
+            {
+                Debug.LogError("Can't find 'm_ShowMode' or 'position'");
+            }
+            UnityEngine.Object[] windows = Resources.FindObjectsOfTypeAll(containerWinType);
+            foreach (UnityEngine.Object win in windows)
+            {
+                var showMode = (int)showModeField.GetValue(win);
+                if (showMode != 4)
+                {
+                    continue;
+                }
+                object view = rootViewProperty.GetValue(win, null);
+                PropertyInfo screenPosProperty = view.GetType().GetProperty("screenPosition");
+                if (screenPosProperty == null)
+                {
+                    Debug.LogError("Can't find 'screenPosition'.");
+                }
+                var screenPos = (Rect)screenPosProperty.GetValue(view, null);
+                return screenPos;
+            }
+            return new Rect();
+        }
+
     }
 }

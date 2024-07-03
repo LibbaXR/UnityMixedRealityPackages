@@ -19,7 +19,6 @@ namespace MagicLeap.ZI
         public event Action OnSessionStopped;
 
         public bool IsSessionRunning { get; private set; }
-        public bool IsHybridMode => ZIBridge.IsHybridMode;
         public bool IsDeviceMode => ZIBridge.IsDeviceMode;
 
         protected static ZIBridge Bridge => ZIBridge.Instance;
